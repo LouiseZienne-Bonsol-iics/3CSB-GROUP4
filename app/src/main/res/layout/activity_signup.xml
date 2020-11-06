@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignupActivity"
+    android:background="@color/Primary">
+
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="184dp"
+        android:layout_height="48dp"
+        android:fontFamily="@font/montserrat"
+        android:text="Home Brew"
+        android:textColor="#ffffff"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/myRectangleView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.425" />
+
+    <View
+        android:id="@+id/myRectangleView"
+        android:layout_width="344dp"
+        android:layout_height="554dp"
+        android:background="@color/Dark"
+        android:outlineAmbientShadowColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+
+    <Button
+        android:id="@+id/signup"
+        android:layout_width="275dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="368dp"
+        android:background="@drawable/signupbutton"
+        android:fontFamily="@font/roboto"
+        android:outlineAmbientShadowColor="@color/Primary"
+        android:text="Create Profile"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/myRectangleView"
+        app:layout_constraintHorizontal_bias="0.513"
+        app:layout_constraintStart_toStartOf="@+id/myRectangleView"
+        app:layout_constraintTop_toTopOf="@+id/myRectangleView" />
+
+    <Button
+        android:id="@+id/back"
+        android:layout_width="275dp"
+        android:layout_height="57dp"
+        android:background="@drawable/signupbutton"
+        android:fontFamily="@font/roboto"
+        android:onClick="displayLogin"
+        android:text="Back"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/myRectangleView"
+        app:layout_constraintEnd_toEndOf="@+id/myRectangleView"
+        app:layout_constraintHorizontal_bias="0.513"
+        app:layout_constraintStart_toStartOf="@+id/myRectangleView"
+        app:layout_constraintTop_toBottomOf="@+id/signup"
+        app:layout_constraintVertical_bias="0.231" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="275dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="84dp"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:fontFamily="@font/roboto"
+        android:gravity="center"
+        android:hint="Username"
+        android:inputType="textPersonName"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/myRectangleView"
+        app:layout_constraintHorizontal_bias="0.513"
+        app:layout_constraintStart_toStartOf="@+id/myRectangleView"
+        app:layout_constraintTop_toTopOf="@+id/myRectangleView" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="275dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="24dp"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:fontFamily="@font/roboto"
+        android:gravity="center"
+        android:inputType="textPassword"
+        android:textSize="24sp"
+        android:hint="Password"
+        app:layout_constraintEnd_toEndOf="@+id/myRectangleView"
+        app:layout_constraintHorizontal_bias="0.513"
+        app:layout_constraintStart_toStartOf="@+id/myRectangleView"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="275dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="104dp"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:fontFamily="@font/roboto"
+        android:gravity="center"
+        android:hint="Confirm Password"
+        android:inputType="textPassword"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/myRectangleView"
+        app:layout_constraintHorizontal_bias="0.513"
+        app:layout_constraintStart_toStartOf="@+id/myRectangleView"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="244dp"
+        android:layout_height="43dp"
+        android:fontFamily="@font/montserrat"
+        android:text="Create A Profile"
+        android:textColor="#ffffff"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/myRectangleView"
+        app:layout_constraintVertical_bias="0.043" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="63dp"
+        android:layout_height="61dp"
+        app:layout_constraintBottom_toBottomOf="@+id/myRectangleView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023"
+        app:srcCompat="@drawable/coffee_dark" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
