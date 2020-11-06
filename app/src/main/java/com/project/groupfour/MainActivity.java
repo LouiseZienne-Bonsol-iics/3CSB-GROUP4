@@ -12,6 +12,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+    }
+    public void userHome(View v){
+        Intent i = new Intent(this, UserHome.class);
+        startActivity(i);
     }
 
     public void displaySignup(View v){

@@ -51,6 +51,7 @@
         android:layout_marginTop="48dp"
         android:background="@drawable/loginbutton"
         android:fontFamily="@font/roboto"
+        android:onClick="userHome"
         android:outlineAmbientShadowColor="@color/Primary"
         android:text="Login"
         android:textColor="#ffffff"
