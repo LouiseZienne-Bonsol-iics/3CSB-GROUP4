@@ -17,14 +17,6 @@
          />
 
     <ImageView
-        android:id="@+id/menu_bar"
-        android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:adjustViewBounds="true"
-        android:src="@drawable/menubutton"
-        />
-
-    <ImageView
         android:id="@+id/toolbar_logo"
         android:layout_width="wrap_content"
         android:layout_height="45dp"
