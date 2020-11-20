@@ -39,9 +39,12 @@ public class UserHome extends AppCompatActivity implements NavigationView.OnNavi
         toggle.syncState();
 
         if(savedInstanceState == null){
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new HomeFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_home);
         }
 
+        /**
         //Featured Drinks Image Slider
         ImageSlider imageSlider = findViewById(R.id.slider);
         List<SlideModel> slideModels = new ArrayList<>();
@@ -51,6 +54,7 @@ public class UserHome extends AppCompatActivity implements NavigationView.OnNavi
         slideModels.add(new SlideModel("https://static.independent.co.uk/s3fs-public/thumbnails/image/2018/04/09/20/istock-157528129.jpg?width=990"));
         slideModels.add(new SlideModel("https://upload.wikimedia.org/wikipedia/commons/5/54/Ipoh_White_Coffee%2C_Old_Town_Kopitiam_in_Australia.jpg"));
         imageSlider.setImageList(slideModels, true);
+         **/
     }
 
     @Override

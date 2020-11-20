@@ -4,19 +4,25 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
-        <item android:id="@+id/nav_home"
+        <item
+            android:id="@+id/nav_home"
             android:icon="@drawable/ic_home"
             android:title="Home" />
-        <item android:id="@+id/nav_search"
+
+        <item
+            android:id="@+id/nav_search"
             android:icon="@drawable/ic_search"
             android:title="Search" />
-        <item android:id="@+id/nav_favorites"
+        <item
+            android:id="@+id/nav_favorites"
             android:icon="@drawable/ic_favorites"
             android:title="Favorites" />
-        <item android:id="@+id/nav_settings"
+        <item
+            android:id="@+id/nav_settings"
             android:icon="@drawable/ic_settings"
             android:title="Settings" />
-        <item android:id="@+id/nav_addrecipe"
+        <item
+            android:id="@+id/nav_addrecipe"
             android:icon="@drawable/ic_addrecipe"
             android:title="Add Recipe" />
 

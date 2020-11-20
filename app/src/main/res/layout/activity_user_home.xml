@@ -25,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <com.denzcoskun.imageslider.ImageSlider
+            <!--<com.denzcoskun.imageslider.ImageSlider
                 android:id="@+id/slider"
                 android:layout_width="match_parent"
                 android:layout_height="210dp"
@@ -40,11 +40,9 @@
                 app:placeholder="@drawable/no_internet_substitute_image"
 
                 tools:layout_editor_absoluteX="0dp">
-            </com.denzcoskun.imageslider.ImageSlider>
+            </com.denzcoskun.imageslider.ImageSlider>-->
 
         </FrameLayout>
-
-
 
     </LinearLayout>
 
@@ -53,7 +51,10 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        app:itemIconTint="#1F967B"
         app:headerLayout="@layout/nav_header"
+        app:itemBackground="@drawable/drawer_item_bg"
+        android:background="#F4F4F4"
         app:menu="@menu/drawer_menu" />
 
 
