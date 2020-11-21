@@ -3,6 +3,7 @@ package com.project.groupfour;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -35,6 +36,8 @@ public class SignupActivity extends AppCompatActivity {
     private DatabaseReference mRootRef;
     private FirebaseAuth mAuth;
 
+    ProgressDialog pd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +51,7 @@ public class SignupActivity extends AppCompatActivity {
 
         mRootRef = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
+        pd = new ProgressDialog(this);
 
         createProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,6 +79,9 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     private void registerUser(final String username, final String email, final String role, final String password) {
+        pd.setMessage("Please Wait");
+        pd.show();
+
         mAuth.createUserWithEmailAndPassword(email,password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
             public void onSuccess(AuthResult authResult) {
@@ -88,6 +95,7 @@ public class SignupActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()){
+                            pd.dismiss();
                             Toast.makeText(SignupActivity.this, "Profile Created Successfully", Toast.LENGTH_SHORT).show();
                             Intent i = new Intent(SignupActivity.this,LoginActivity.class);
                             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -100,13 +108,14 @@ public class SignupActivity extends AppCompatActivity {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
+                pd.dismiss();
                 Toast.makeText(SignupActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     public void displayLogin(View v) {
-        Intent i = new Intent(this, LoginActivity.class);
+        Intent i = new Intent(this, LoginActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(i);
     }
 }
