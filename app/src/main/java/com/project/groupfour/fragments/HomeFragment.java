@@ -1,4 +1,4 @@
-package com.project.groupfour;
+package com.project.groupfour.fragments;
 
 import android.os.Bundle;
 import android.transition.Slide;
@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.models.SlideModel;
+import com.project.groupfour.R;
 
 import java.util.ArrayList;
 import java.util.List;

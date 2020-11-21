@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".LoginActivity"
     android:background="@color/Dark">
 
     <TextView
@@ -15,7 +15,7 @@
         android:fontFamily="@font/montserrat"
         android:text="Home Brew"
         android:textColor="#ffffff"
-        android:textSize="36sp"
+        android:textSize="45sp"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -23,9 +23,9 @@
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="118dp"
-        android:layout_height="126dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="86dp"
+        android:layout_height="76dp"
+        android:layout_marginTop="28dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,8 +34,8 @@
 
     <View
         android:id="@+id/myRectangleView"
-        android:layout_width="347dp"
-        android:layout_height="441dp"
+        android:layout_width="346dp"
+        android:layout_height="456dp"
         android:background="@drawable/rectangle"
         android:outlineAmbientShadowColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -47,7 +47,7 @@
     <Button
         android:id="@+id/login"
         android:layout_width="275dp"
-        android:layout_height="57dp"
+        android:layout_height="45dp"
         android:layout_marginTop="48dp"
         android:background="@drawable/loginbutton"
         android:fontFamily="@font/roboto"
@@ -57,6 +57,7 @@
         android:textColor="#ffffff"
         android:textSize="18sp"
         android:textStyle="bold"
+        android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="@+id/myRectangleView"
         app:layout_constraintStart_toStartOf="@+id/myRectangleView"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
@@ -64,8 +65,8 @@
     <Button
         android:id="@+id/password"
         android:layout_width="275dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="24dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/signupbutton"
         android:fontFamily="@font/roboto"
         android:onClick="displaySignup"
@@ -73,38 +74,40 @@
         android:textColor="#ffffff"
         android:textSize="18sp"
         android:textStyle="bold"
+        android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="@+id/myRectangleView"
-        app:layout_constraintHorizontal_bias="0.527"
+        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="@+id/myRectangleView"
         app:layout_constraintTop_toBottomOf="@+id/login" />
 
     <EditText
         android:id="@+id/editTextTextPersonName"
         android:layout_width="275dp"
-        android:layout_height="58dp"
-        android:layout_marginTop="32dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="56dp"
         android:background="#FFFFFF"
         android:ems="10"
         android:fontFamily="@font/roboto"
         android:gravity="center"
-        android:inputType="textPersonName"
-        android:textSize="24sp"
         android:hint="Username"
+        android:inputType="textPersonName"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@+id/myRectangleView"
+        app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="@+id/myRectangleView"
         app:layout_constraintTop_toTopOf="@+id/myRectangleView" />
 
     <EditText
         android:id="@+id/editTextTextPassword"
         android:layout_width="275dp"
-        android:layout_height="58dp"
+        android:layout_height="45dp"
         android:layout_marginTop="24dp"
         android:background="#FFFFFF"
         android:ems="10"
         android:fontFamily="@font/roboto"
         android:gravity="center"
         android:inputType="textPassword"
-        android:textSize="24sp"
+        android:textSize="18sp"
         android:hint="Password"
         app:layout_constraintEnd_toEndOf="@+id/myRectangleView"
         app:layout_constraintHorizontal_bias="0.513"
