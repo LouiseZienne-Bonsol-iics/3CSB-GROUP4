@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/Dark"
-    android:elevation="20dp">
+    android:elevation="5dp">
 
     <TextView
         android:id="@+id/toolbar_title"
@@ -15,14 +15,6 @@
         android:text="Home Brew"
         android:textColor="@android:color/white"
          />
-
-    <ImageView
-        android:id="@+id/menu_bar"
-        android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:adjustViewBounds="true"
-        android:src="@drawable/menubutton"
-        />
 
     <ImageView
         android:id="@+id/toolbar_logo"
