@@ -2,4 +2,14 @@
     <string name="app_name"></string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string-array name="settings">
+        <item>Brightness</item>
+        <item>Font Size</item>
+        <item>Notification</item>
+        <item>Account Settings</item>
+        <item>Help and Support</item>
+        <item>Donate to Us</item>
+        <item>About</item>
+    </string-array>
 </resources>
