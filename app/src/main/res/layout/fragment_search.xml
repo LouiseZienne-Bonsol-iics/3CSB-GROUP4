@@ -5,33 +5,25 @@
     android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/Dark">
+    android:background="@color/White">
 
-    <View
-        android:id="@+id/nameView"
-        android:layout_width="333dp"
-        android:layout_height="379dp"
-        android:background="@drawable/rectangle"
-        android:outlineAmbientShadowColor="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:layout_constraintVertical_bias="1.0" />
 
-    <View
-        android:id="@+id/categoryView"
-        android:layout_width="332dp"
-        android:layout_height="154dp"
-        android:background="@drawable/rectangle"
-        android:outlineAmbientShadowColor="#000000"
-        app:layout_constraintBottom_toTopOf="@+id/textView4"
+    <EditText
+        android:id="@+id/et_search"
+        android:layout_width="320dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/textview_border"
+        android:ems="10"
+        android:fontFamily="@font/roboto"
+        android:gravity="center"
+        android:hint="Search by name"
+        android:inputType="textPersonName"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.552" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView4"
@@ -41,103 +33,136 @@
         android:layout_centerVertical="true"
         android:fontFamily="@font/montserrat"
         android:text="Search by Category"
-        android:textColor="#ffffff"
+        android:textColor="@color/Grey"
         android:textSize="28sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.347" />
-
-    <EditText
-        android:id="@+id/et_search"
-        android:layout_width="275dp"
-        android:layout_height="45dp"
-        android:background="#FFFFFF"
-        android:ems="10"
-        android:fontFamily="@font/roboto"
-        android:gravity="center"
-        android:hint="Search by name"
-        android:inputType="textPersonName"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.485"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.517" />
+        app:layout_constraintVertical_bias="0.308" />
 
     <Button
         android:id="@+id/coffee"
-        android:layout_width="260dp"
-        android:layout_height="45dp"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
         android:background="@drawable/loginbutton"
         android:fontFamily="@font/roboto"
         android:outlineAmbientShadowColor="@color/Primary"
         android:text="Coffee"
         android:textColor="#ffffff"
-        android:textSize="18sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
         app:layout_constraintVertical_bias="0.111" />
 
     <Button
         android:id="@+id/iceblend"
-        android:layout_width="260dp"
-        android:layout_height="45dp"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
         android:background="@drawable/loginbutton"
         android:fontFamily="@font/roboto"
         android:outlineAmbientShadowColor="@color/Primary"
         android:text="Ice Blend"
         android:textColor="#ffffff"
-        android:textSize="18sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/coffee"
         app:layout_constraintVertical_bias="0.134" />
 
     <Button
         android:id="@+id/tea"
-        android:layout_width="260dp"
-        android:layout_height="45dp"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
         android:background="@drawable/loginbutton"
         android:fontFamily="@font/roboto"
         android:outlineAmbientShadowColor="@color/Primary"
         android:text="Tea"
         android:textColor="#ffffff"
-        android:textSize="18sp"
+        android:textSize="24dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iceblend"
-        app:layout_constraintVertical_bias="0.164" />
+        app:layout_constraintVertical_bias="0.223" />
 
     <Button
         android:id="@+id/frappe"
-        android:layout_width="260dp"
-        android:layout_height="45dp"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
         android:background="@drawable/loginbutton"
         android:fontFamily="@font/roboto"
         android:outlineAmbientShadowColor="@color/Primary"
         android:text="Frappe"
         android:textColor="#ffffff"
-        android:textSize="18sp"
+        android:textSize="24dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tea"
-        app:layout_constraintVertical_bias="0.319" />
+        app:layout_constraintTop_toBottomOf="@+id/tea" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="or"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_search" />
+
+    <View
+        android:layout_width="160dp"
+        android:layout_height="4dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="42dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginRight="18dp"
+        android:background="@color/Grey"
+        app:layout_constraintEnd_toStartOf="@+id/textView5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_search" />
+
+    <View
+        android:layout_width="160dp"
+        android:layout_height="4dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginLeft="19dp"
+        android:layout_marginTop="42dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@color/Grey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView5"
+        app:layout_constraintTop_toBottomOf="@+id/et_search" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="54dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginLeft="56dp"
+        android:layout_marginTop="41dp"
+        android:layout_marginEnd="301dp"
+        android:layout_marginRight="301dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_search_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
