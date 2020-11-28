@@ -12,4 +12,69 @@
         <item>Donate to Us</item>
         <item>About</item>
     </string-array>
+
+    <integer-array name="homeImage">
+        <item>@drawable/temp_c1</item>
+        <item>@drawable/temp_c2</item>
+        <item>@drawable/temp_c3</item>
+        <item>@drawable/temp_c4</item>
+        <item>@drawable/temp_c5</item>
+        <item>@drawable/temp_c6</item>
+        <item>@drawable/temp_c7</item>
+        <item>@drawable/temp_c8</item>
+        <item>@drawable/temp_c9</item>
+
+        <item>@drawable/temp_t1</item>
+        <item>@drawable/temp_t2</item>
+        <item>@drawable/temp_t3</item>
+        <item>@drawable/temp_t4</item>
+        <item>@drawable/temp_t5</item>
+        <item>@drawable/temp_t6</item>
+        <item>@drawable/temp_t7</item>
+        <item>@drawable/temp_t8</item>
+        <item>@drawable/temp_t9</item>
+
+        <item>@drawable/temp_j1</item>
+        <item>@drawable/temp_j2</item>
+        <item>@drawable/temp_j3</item>
+        <item>@drawable/temp_j4</item>
+        <item>@drawable/temp_j5</item>
+        <item>@drawable/temp_j6</item>
+        <item>@drawable/temp_j7</item>
+        <item>@drawable/temp_j8</item>
+        <item>@drawable/temp_j9</item>
+    </integer-array>
+
+    <string-array name="homeText">
+        <item>Coffee 1</item>
+        <item>Coffee 2</item>
+        <item>Coffee 3</item>
+        <item>Coffee 4</item>
+        <item>Coffee 5</item>
+        <item>Coffee 6</item>
+        <item>Coffee 7</item>
+        <item>Coffee 8</item>
+        <item>Coffee 9</item>
+
+        <item>Tea 1</item>
+        <item>Tea 2</item>
+        <item>Tea 3</item>
+        <item>Tea 4</item>
+        <item>Tea 5</item>
+        <item>Tea 6</item>
+        <item>Tea 7</item>
+        <item>Tea 8</item>
+        <item>Tea 9</item>
+
+        <item>Juice 1</item>
+        <item>Juice 2</item>
+        <item>Juice 3</item>
+        <item>Juice 4</item>
+        <item>Juice 5</item>
+        <item>Juice 6</item>
+        <item>Juice 7</item>
+        <item>Juice 8</item>
+        <item>Juice 9</item>
+    </string-array>
+
 </resources>

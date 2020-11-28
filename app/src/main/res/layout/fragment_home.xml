@@ -6,6 +6,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/holo_orange_light">
 
+    <!-- Slider -->
+
     <com.denzcoskun.imageslider.ImageSlider
         android:id="@+id/slider"
         android:layout_width="match_parent"
@@ -22,6 +24,22 @@
 
         tools:layout_editor_absoluteX="0dp">
     </com.denzcoskun.imageslider.ImageSlider>
+
+    <!-- Home Choices -->
+
+    <GridView
+        android:id="@+id/homeGridView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:numColumns="auto_fit"
+        android:stretchMode="spacingWidthUniform"
+        android:verticalSpacing="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <TextView
         android:layout_width="wrap_content"
