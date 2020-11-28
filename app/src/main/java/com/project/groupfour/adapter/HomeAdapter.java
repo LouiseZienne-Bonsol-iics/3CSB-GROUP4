@@ -71,7 +71,6 @@ public class HomeAdapter extends BaseAdapter {
         tText.setText(temp.homeName);
         tImage.setImageResource(temp.homePic);
 
-        return null;
-        //not null
+        return row;
     }
 }

@@ -23,8 +23,7 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
     ImageSlider imageSlider;
-    GridView gv;
-    HomeAdapter ha;
+    GridView gridView;
 
     @Nullable
     @Override
@@ -41,22 +40,15 @@ public class HomeFragment extends Fragment {
         slideModels.add(new SlideModel("https://upload.wikimedia.org/wikipedia/commons/5/54/Ipoh_White_Coffee%2C_Old_Town_Kopitiam_in_Australia.jpg"));
         imageSlider.setImageList(slideModels, true);
 
+        gridView = (GridView) view.findViewById(R.id.homeGridView);
+
         return view;
     }
 
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        setContentView(R.layout.fragment_home);
-        gv = gv.findViewById(R.id.homeGridView);
-        gv.setAdapter(new HomeAdapter(this));
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        Toast.makeText(getActivity(), "Item: " + i, Toast.LENGTH_SHORT).show();
-    }
-
-
+    /*
+    setContentView(R.layout.fragment_home);
+    gv = gv.findViewById(R.id.homeGridView);
+    gv.setAdapter(new HomeAdapter(this));
+    */
 
 }
