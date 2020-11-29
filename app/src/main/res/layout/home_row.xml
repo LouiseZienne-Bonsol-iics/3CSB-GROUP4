@@ -16,7 +16,7 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="100dp"
                 android:id="@+id/homeImage"
                 android:src="@drawable/ic_launcher_background"/>
             
