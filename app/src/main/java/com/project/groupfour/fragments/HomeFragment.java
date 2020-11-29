@@ -9,22 +9,32 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.models.SlideModel;
+import com.project.groupfour.HomeAdapter;
+import com.project.groupfour.HomeConstructor;
 import com.project.groupfour.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
+
+    public HomeFragment(){
+
+    }
+
     ImageSlider imageSlider;
+    RecyclerView recyclerView;
+    List <HomeConstructor> itemList;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //return inflater.inflate(R.layout.fragment_home, container, false);
-
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         imageSlider = view.findViewById(R.id.slider);
@@ -36,7 +46,23 @@ public class HomeFragment extends Fragment {
         slideModels.add(new SlideModel("https://upload.wikimedia.org/wikipedia/commons/5/54/Ipoh_White_Coffee%2C_Old_Town_Kopitiam_in_Australia.jpg"));
         imageSlider.setImageList(slideModels, true);
 
+        recyclerView = view.findViewById(R.id.homeRecyclerContent);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setAdapter(new HomeAdapter(initData()));
+
         return view;
+    }
+
+    private List <HomeConstructor> initData() {
+
+        itemList = new ArrayList<>();
+        itemList.add(new HomeConstructor(R.drawable.temp_c1,"Coffee"));
+        itemList.add(new HomeConstructor(R.drawable.temp_t1,"Tea"));
+        itemList.add(new HomeConstructor(R.drawable.temp_j1,"Juice"));
+
+        return itemList;
+
     }
 
 }
