@@ -57,9 +57,9 @@ public class HomeFragment extends Fragment {
     private List <HomeConstructor> initData() {
 
         itemList = new ArrayList<>();
-        itemList.add(new HomeConstructor(R.drawable.ic_launcher_background,"Coffee"));
-        itemList.add(new HomeConstructor(R.drawable.ic_launcher_background,"Tea"));
-        itemList.add(new HomeConstructor(R.drawable.ic_launcher_background,"Juice"));
+        itemList.add(new HomeConstructor(R.drawable.ic_launcher_background,"Popular Now"));
+        itemList.add(new HomeConstructor(R.drawable.ic_launcher_background,"Recent Searches"));
+        itemList.add(new HomeConstructor(R.drawable.ic_launcher_background,"My Favorites"));
 
         return itemList;
 

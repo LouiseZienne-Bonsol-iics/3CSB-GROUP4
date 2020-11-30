@@ -3,33 +3,39 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:gravity="center">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@color/HomeGrey">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/homeText"
+                android:text="Content"
+                android:layout_margin="8dp"
+
+                android:padding = "16dp"
+                android:textSize="24dp"
+                android:textStyle="bold"
+                android:textColor="@color/Dark"
+                android:background="@drawable/home_custom_text"/>
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:id="@+id/homeImage"
                 android:src="@drawable/ic_launcher_background"/>
-            
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/homeText"
-                android:text="Content"
-                android:gravity="center"
-                android:layout_marginTop="5dp"
-                android:textSize="24dp"
-                android:textStyle="bold"/>
-
 
         </LinearLayout>
 
