@@ -30,7 +30,12 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull HomeAdapter.ViewHolder holder, int position) {
 
+        holder.imageViewTL.setImageResource(hItemList.get(position).getcHomeImageTL());
         holder.imageView.setImageResource(hItemList.get(position).getcHomeImage());
+        holder.imageViewTR.setImageResource(hItemList.get(position).getcHomeImageTR());
+        holder.imageViewBL.setImageResource(hItemList.get(position).getcHomeImageBL());
+        holder.imageViewB.setImageResource(hItemList.get(position).getcHomeImageB());
+        holder.imageViewBR.setImageResource(hItemList.get(position).getcHomeImageBR());
         holder.textView.setText(hItemList.get(position).getcHomeName());
     }
 
@@ -41,14 +46,20 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView imageView;
+        ImageView imageView, imageViewTL, imageViewTR, imageViewB, imageViewBL, imageViewBR;
         TextView textView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            imageView = itemView.findViewById(R.id.homeImage);
             textView = itemView.findViewById(R.id.homeText);
+            imageViewTL = itemView.findViewById(R.id.homeImageTL);
+            imageView = itemView.findViewById(R.id.homeImage);
+            imageViewTR = itemView.findViewById(R.id.homeImageTR);
+            imageViewBL = itemView.findViewById(R.id.homeImageBL);
+            imageViewB = itemView.findViewById(R.id.homeImageB);
+            imageViewBR = itemView.findViewById(R.id.homeImageBR);
+
         }
     }
 }
