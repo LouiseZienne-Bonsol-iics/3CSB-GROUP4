@@ -5,6 +5,7 @@ import android.transition.Slide;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,6 +30,7 @@ public class HomeFragment extends Fragment {
 
     ImageSlider imageSlider;
     RecyclerView recyclerView;
+    LinearLayout linearLayout;
     List <HomeConstructor> itemList;
 
     @Nullable
@@ -56,6 +58,7 @@ public class HomeFragment extends Fragment {
 
     private List <HomeConstructor> initData() {
 
+        // Need to change first param to list or something
         itemList = new ArrayList<>();
         itemList.add(new HomeConstructor(R.drawable.ic_launcher_background,"Popular Now"));
         itemList.add(new HomeConstructor(R.drawable.ic_launcher_background,"Recent Searches"));
