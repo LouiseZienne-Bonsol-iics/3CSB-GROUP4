@@ -36,33 +36,36 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_margin="6dp"
-                android:id="@+id/homeCollapsable">
+                android:id="@+id/homeCollapsable"
+                >
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_margin="6dp"
+                    android:layout_margin="4dp"
                     >
 
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="100dp"
+                        android:layout_height="120dp"
                         android:id="@+id/homeImageTL"
-                        android:src="@drawable/ic_launcher_background"/>
+                        android:src="@drawable/ic_launcher_background"
+                        android:layout_margin="2dp"/>
 
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="100dp"
+                        android:layout_height="120dp"
                         android:id="@+id/homeImage"
-                        android:src="@drawable/ic_launcher_background"/>
+                        android:src="@drawable/ic_launcher_background"
+                        android:layout_margin="2dp"/>
 
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="100dp"
+                        android:layout_height="120dp"
                         android:id="@+id/homeImageTR"
-                        android:src="@drawable/ic_launcher_background"/>
+                        android:src="@drawable/ic_launcher_background"
+                        android:layout_margin="2dp"/>
 
                 </LinearLayout>
 
@@ -70,26 +73,29 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_margin="6dp"
+                    android:layout_margin="4dp"
                     >
 
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="100dp"
+                        android:layout_height="120dp"
                         android:id="@+id/homeImageBL"
-                        android:src="@drawable/ic_launcher_background"/>
+                        android:src="@drawable/ic_launcher_background"
+                        android:layout_margin="2dp"/>
 
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="100dp"
+                        android:layout_height="120dp"
                         android:id="@+id/homeImageB"
-                        android:src="@drawable/ic_launcher_background"/>
+                        android:src="@drawable/ic_launcher_background"
+                        android:layout_margin="2dp"/>
 
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="100dp"
+                        android:layout_height="120dp"
                         android:id="@+id/homeImageBR"
-                        android:src="@drawable/ic_launcher_background"/>
+                        android:src="@drawable/ic_launcher_background"
+                        android:layout_margin="2dp"/>
 
                 </LinearLayout>
 

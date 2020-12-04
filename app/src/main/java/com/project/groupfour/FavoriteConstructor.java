@@ -23,4 +23,3 @@ public class FavoriteConstructor {
         this.cFavoriteName = cFavoriteName;
     }
 }
-

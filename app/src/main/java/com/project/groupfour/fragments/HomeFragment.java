@@ -58,11 +58,32 @@ public class HomeFragment extends Fragment {
 
     private List <HomeConstructor> initData() {
 
-        // Need to change first param to list or something
+        // This is where you change the photos
         itemList = new ArrayList<>();
-        itemList.add(new HomeConstructor(R.drawable.ic_launcher_background,"Popular Now"));
-        itemList.add(new HomeConstructor(R.drawable.ic_launcher_background,"Recent Searches"));
-        itemList.add(new HomeConstructor(R.drawable.ic_launcher_background,"My Favorites"));
+        itemList.add(new HomeConstructor(
+                R.drawable.temp_c1,
+                R.drawable.temp_c2,
+                R.drawable.temp_c3,
+                R.drawable.temp_c4,
+                R.drawable.temp_c5,
+                R.drawable.temp_c6,
+                "Popular Now"));
+        itemList.add(new HomeConstructor(
+                R.drawable.temp_t1,
+                R.drawable.temp_t2,
+                R.drawable.temp_t3,
+                R.drawable.temp_t4,
+                R.drawable.temp_t5,
+                R.drawable.temp_t6,
+                "Recent Searches"));
+        itemList.add(new HomeConstructor(
+                R.drawable.temp_j1,
+                R.drawable.temp_j2,
+                R.drawable.temp_j3,
+                R.drawable.temp_j4,
+                R.drawable.temp_j5,
+                R.drawable.temp_j6,
+                "My Favorites"));
 
         return itemList;
 

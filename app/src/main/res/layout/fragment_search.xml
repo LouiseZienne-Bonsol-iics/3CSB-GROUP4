@@ -9,10 +9,10 @@
 
 
     <EditText
-        android:id="@+id/et_search"
+        android:id="@+id/homeSearch"
         android:layout_width="320dp"
         android:layout_height="70dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="36dp"
         android:background="@drawable/textview_border"
         android:ems="10"
         android:fontFamily="@font/roboto"
@@ -43,7 +43,7 @@
         app:layout_constraintVertical_bias="0.308" />
 
     <Button
-        android:id="@+id/coffee"
+        android:id="@+id/homeCoffee"
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:background="@drawable/loginbutton"
@@ -58,16 +58,17 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.111" />
+        app:layout_constraintVertical_bias="0.111"
+        />
 
     <Button
-        android:id="@+id/iceblend"
+        android:id="@+id/homeJuice"
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:background="@drawable/loginbutton"
         android:fontFamily="@font/roboto"
         android:outlineAmbientShadowColor="@color/Primary"
-        android:text="Ice Blend"
+        android:text="Juice"
         android:textColor="#ffffff"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -75,11 +76,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/coffee"
-        app:layout_constraintVertical_bias="0.134" />
+        app:layout_constraintTop_toBottomOf="@+id/homeCoffee"
+        app:layout_constraintVertical_bias="0.134"
+        />
 
     <Button
-        android:id="@+id/tea"
+        android:id="@+id/homeTea"
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:background="@drawable/loginbutton"
@@ -93,17 +95,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iceblend"
-        app:layout_constraintVertical_bias="0.223" />
+        app:layout_constraintTop_toBottomOf="@+id/homeJuice"
+        app:layout_constraintVertical_bias="0.223"
+        />
 
     <Button
-        android:id="@+id/frappe"
+        android:id="@+id/homeDairy"
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:background="@drawable/loginbutton"
         android:fontFamily="@font/roboto"
         android:outlineAmbientShadowColor="@color/Primary"
-        android:text="Frappe"
+        android:text="Dairy"
         android:textColor="#ffffff"
         android:textSize="24dp"
         android:textStyle="bold"
@@ -111,58 +114,56 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tea" />
+        app:layout_constraintTop_toBottomOf="@+id/homeTea"
+        />
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="137dp"
         android:text="or"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_search" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:layout_width="160dp"
+        android:layout_height="4dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@color/Grey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView5"
+        app:layout_constraintTop_toBottomOf="@+id/homeSearch" />
 
     <View
         android:layout_width="160dp"
         android:layout_height="4dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="42dp"
-        android:layout_marginEnd="18dp"
-        android:layout_marginRight="18dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="19dp"
+        android:layout_marginRight="19dp"
         android:background="@color/Grey"
         app:layout_constraintEnd_toStartOf="@+id/textView5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_search" />
+        app:layout_constraintTop_toBottomOf="@+id/homeSearch" />
 
-    <View
-        android:layout_width="160dp"
-        android:layout_height="4dp"
-        android:layout_marginStart="19dp"
-        android:layout_marginLeft="19dp"
-        android:layout_marginTop="42dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:background="@color/Grey"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView5"
-        app:layout_constraintTop_toBottomOf="@+id/et_search" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="54dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginLeft="56dp"
-        android:layout_marginTop="41dp"
-        android:layout_marginEnd="301dp"
-        android:layout_marginRight="301dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+    <ImageButton
+        android:id="@+id/homeSearchIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/homeSearch"
+        app:layout_constraintHorizontal_bias="0.042"
+        app:layout_constraintStart_toStartOf="@+id/homeSearch"
+        app:layout_constraintTop_toTopOf="@+id/homeSearch"
         app:srcCompat="@drawable/ic_baseline_search_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
