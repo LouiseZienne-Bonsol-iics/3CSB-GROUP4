@@ -90,6 +90,7 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
 
     private void createNewContactDialog(){
         homeDialogBuilder = new AlertDialog.Builder(getActivity()).setTitle("How would you like your drink?");
+        homeDialogBuilder.setCancelable(true);
 
         // Radio Button Starts here
         final String[] temp = {"Hot","Cold"};
@@ -105,12 +106,28 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
                                 Toast.makeText(getActivity(), "Clicked on Cold", Toast.LENGTH_LONG).show();
                                 break;
                         }
-                        homeDialog.dismiss();
+//                        homeDialog.dismiss();
+                    }
+                });
+
+        homeDialogBuilder.setPositiveButton("Ok",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Toast.makeText(getActivity(), "Something has been selected", Toast.LENGTH_LONG).show();
+                        dialog.cancel();
+
+
+                    }
+                });
+        homeDialogBuilder.setNegativeButton("Cancel",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                    Toast.makeText(getActivity(), "Cancel Culture Legoo", Toast.LENGTH_LONG).show();
+                        dialog.cancel();
                     }
                 });
 
         homeDialog = homeDialogBuilder.create();
-        homeDialogBuilder.setCancelable(true);
         homeDialog.show();
     }
 
