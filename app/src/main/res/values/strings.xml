@@ -12,4 +12,18 @@
         <item>Donate to Us</item>
         <item>About</item>
     </string-array>
+
+    <string-array name="ingredients">
+        <item>Sugar</item>
+        <item>Spice</item>
+        <item>Everything 69</item>
+        <item>Chemical X</item>
+    </string-array>
+
+    <string-array name="step">
+        <item>Get cup</item>
+        <item>Pour milk</item>
+        <item>Add coffee</item>
+        <item>Stir til Golden Brown</item>
+    </string-array>
 </resources>
