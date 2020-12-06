@@ -70,23 +70,69 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
             switch (view.getId()) {
                 case R.id.homeCoffee:
                     Log.d("systemHell", "Message 1");
+                    createNewContactDialog();
                     break;
                 case R.id.homeJuice:
                     Log.d("systemHell", "Message 2");
+                    createOtherSubContactDialog();
                     break;
                 case R.id.homeTea:
                     Log.d("systemHell", "Message 3");
+                    createNewContactDialog();
                     break;
                 case R.id.homeDairy:
                     Log.d("systemHell", "Message 4");
+                    createOtherSubContactDialog();
                     break;
             }
-
-            // The popup
-            createNewContactDialog();
-
         }
     }
+
+    private void createOtherSubContactDialog() {
+        homeDialogBuilder = new AlertDialog.Builder(getActivity()).setTitle("How would you like your drink?");
+        homeDialogBuilder.setCancelable(true);
+
+        // Radio Button Starts here
+        final String[] temp = {"Fruit Based","Coffee Based", "Milk Based"};
+        int checkedItem = -1;
+        homeDialogBuilder.setSingleChoiceItems(temp, checkedItem, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case 0:
+                        Toast.makeText(getActivity(), "Clicked on Fruit", Toast.LENGTH_LONG).show();
+                        break;
+                    case 1:
+                        Toast.makeText(getActivity(), "Clicked on Coffee", Toast.LENGTH_LONG).show();
+                        break;
+                    case 2:
+                        Toast.makeText(getActivity(), "Clicked on Milk", Toast.LENGTH_LONG).show();
+                        break;
+                }
+            }
+        });
+
+        homeDialogBuilder.setPositiveButton("Ok",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Toast.makeText(getActivity(), "Something has been selected", Toast.LENGTH_LONG).show();
+                        dialog.cancel();
+
+
+                    }
+                });
+        homeDialogBuilder.setNegativeButton("Cancel",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Toast.makeText(getActivity(), "Cancel Culture Legoo", Toast.LENGTH_LONG).show();
+                        dialog.cancel();
+                    }
+                });
+
+        homeDialog = homeDialogBuilder.create();
+        homeDialog.show();
+    }
+
 
     private void createNewContactDialog(){
         homeDialogBuilder = new AlertDialog.Builder(getActivity()).setTitle("How would you like your drink?");
