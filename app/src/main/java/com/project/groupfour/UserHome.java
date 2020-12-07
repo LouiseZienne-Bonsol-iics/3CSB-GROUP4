@@ -7,11 +7,14 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,8 +29,11 @@ import com.project.groupfour.fragments.HomeFragment;
 import com.project.groupfour.fragments.SearchFragment;
 import com.project.groupfour.fragments.SettingsFragment;
 
+import org.w3c.dom.Text;
+
 public class UserHome extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawer;
+    NavigationView navigationView;
     private TextView currentUsername;
 
     private DatabaseReference databaseReference;
@@ -51,7 +57,7 @@ public class UserHome extends AppCompatActivity implements NavigationView.OnNavi
 
         //Side Navigation Drawer
         drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         currentUsername = navigationView.getHeaderView(0).findViewById(R.id.nav_currentUser);
         navigationView.setNavigationItemSelectedListener(this);
 
@@ -60,6 +66,15 @@ public class UserHome extends AppCompatActivity implements NavigationView.OnNavi
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 currentUsername.setText(dataSnapshot.child("username").getValue().toString());
+
+                String role = dataSnapshot.child("role").getValue().toString();
+                SharedPreferences sharedPreferences = getSharedPreferences("prefs", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("role", role);
+                editor.commit();
+
+                addRecipeVisibility();
+                Log.d("RecipeTest", "Changed value of currentUserRole");
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -98,11 +113,22 @@ public class UserHome extends AppCompatActivity implements NavigationView.OnNavi
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new SettingsFragment()).commit();
                 break;
+            case R.id.nav_addrecipe:
+                Toast.makeText(UserHome.this, "Add to Recipe was clicked", Toast.LENGTH_SHORT).show();
+                break;
         }
-
         drawer.closeDrawer(GravityCompat.START);
-
         return true;
+    }
+
+    private void addRecipeVisibility(){
+        Log.d("RecipeTest", "went inside new method");
+        SharedPreferences sp = getSharedPreferences("prefs", MODE_PRIVATE);
+        if(sp.getString("role", "").equals("User")){
+            navigationView.getMenu().findItem(R.id.nav_addrecipe).setVisible(false);
+        } else {
+            navigationView.getMenu().findItem(R.id.nav_addrecipe).setVisible(true);
+        }
     }
 
     @Override
