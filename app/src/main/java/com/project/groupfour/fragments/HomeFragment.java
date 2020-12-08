@@ -1,7 +1,6 @@
 package com.project.groupfour.fragments;
 
 import android.os.Bundle;
-import android.transition.Slide;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.models.SlideModel;
-import com.project.groupfour.HomeAdapter;
+import com.project.groupfour.adapters.HomeAdapter;
 import com.project.groupfour.HomeConstructor;
 import com.project.groupfour.R;
 

@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -61,7 +62,7 @@ public class UserHome extends AppCompatActivity implements NavigationView.OnNavi
         currentUsername = navigationView.getHeaderView(0).findViewById(R.id.nav_currentUser);
         navigationView.setNavigationItemSelectedListener(this);
 
-        //get username from firebase db
+        //get username from firebase db and setting visibility of "Add Recipe" button
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -114,7 +115,11 @@ public class UserHome extends AppCompatActivity implements NavigationView.OnNavi
                         new SettingsFragment()).commit();
                 break;
             case R.id.nav_addrecipe:
-                Toast.makeText(UserHome.this, "Add to Recipe was clicked", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(this, AddRecipeActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(i);
+                navigationView.setCheckedItem(R.id.nav_home);
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new HomeFragment()).commit();
                 break;
         }
         drawer.closeDrawer(GravityCompat.START);
