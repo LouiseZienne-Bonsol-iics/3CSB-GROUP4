@@ -4,6 +4,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -37,6 +39,10 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         holder.imageViewB.setImageResource(hItemList.get(position).getcHomeImageB());
         holder.imageViewBR.setImageResource(hItemList.get(position).getcHomeImageBR());
         holder.textView.setText(hItemList.get(position).getcHomeName());
+
+        boolean isExpandable = hItemList.get(position).isExpandable();
+
+        holder.linearCollapse.setVisibility(isExpandable ? View.VISIBLE : View.GONE);
     }
 
     @Override
@@ -49,6 +55,9 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         ImageView imageView, imageViewTL, imageViewTR, imageViewB, imageViewBL, imageViewBR;
         TextView textView;
 
+        LinearLayout linearPrime, linearCollapse, linearInner;
+        RelativeLayout rl;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -60,6 +69,18 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
             imageViewB = itemView.findViewById(R.id.homeImageB);
             imageViewBR = itemView.findViewById(R.id.homeImageBR);
 
+            linearPrime = itemView.findViewById(R.id.linear_layout);
+            linearCollapse = itemView.findViewById(R.id.homeCollapsable);
+            linearInner = itemView.findViewById(R.id.linear_inner);
+
+            linearPrime.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    HomeConstructor hc = hItemList.get(getAdapterPosition());
+                    hc.setExpandable(!hc.isExpandable());
+                    notifyItemChanged(getAdapterPosition());
+                }
+            });
         }
     }
 }
