@@ -12,10 +12,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.project.groupfour.FavoriteAdapter;
+import com.project.groupfour.adapters.FavoriteAdapter;
 import com.project.groupfour.FavoriteConstructor;
-import com.project.groupfour.HomeAdapter;
-import com.project.groupfour.HomeConstructor;
 import com.project.groupfour.R;
 
 import java.util.ArrayList;

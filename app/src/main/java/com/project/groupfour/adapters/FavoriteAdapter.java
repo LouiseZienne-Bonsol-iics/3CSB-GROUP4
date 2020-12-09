@@ -1,4 +1,4 @@
-package com.project.groupfour;
+package com.project.groupfour.adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +9,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+import com.project.groupfour.FavoriteConstructor;
+import com.project.groupfour.R;
+
 import java.util.List;
 
 public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHolder> {

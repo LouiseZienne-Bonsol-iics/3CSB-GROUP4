@@ -63,6 +63,8 @@ public class LoginActivity extends AppCompatActivity {
                 if(task.isSuccessful()){
                     pd.dismiss();
 
+
+
                     Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(LoginActivity.this,UserHome.class);
                     i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
