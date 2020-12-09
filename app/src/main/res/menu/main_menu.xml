@@ -23,6 +23,11 @@
             android:title="Settings"
             android:icon="@drawable/nav_settings"/>
 
+        <item
+            android:id="@+id/nav_addrecipe"
+            android:title="Add Recipe"
+            android:icon="@drawable/nav_addrecipe"/>
+
     </group>
 
 </menu>

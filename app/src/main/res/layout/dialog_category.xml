@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingBottom="25dp"
+    android:paddingRight="20dp"
+    android:paddingLeft="20dp"
+    android:background="@android:color/white"
+    android:layout_marginRight="20dp"
+    android:layout_marginLeft="20dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/txt_tags"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="Tags"
+        android:textSize="30sp"
+        android:textFontWeight="800"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/coffee_button"
+        android:layout_width="330dp"
+        android:layout_height="71dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/button_category"
+        android:drawableRight="@drawable/ic_arrow_right"
+        android:paddingLeft="50dp"
+        android:paddingRight="20dp"
+        android:text="Coffee"
+        android:fontFamily="@font/roboto"
+        android:textFontWeight="800"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_tags" />
+
+    <Button
+        android:id="@+id/iceblend_button"
+        android:layout_width="330dp"
+        android:layout_height="71dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/button_category"
+        android:drawableRight="@drawable/ic_arrow_right"
+        android:fontFamily="@font/roboto"
+        android:paddingLeft="50dp"
+        android:paddingRight="20dp"
+        android:text="Ice Blended"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textFontWeight="800"
+        android:textSize="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/coffee_button" />
+
+    <Button
+        android:id="@+id/tea_button"
+        android:layout_width="330dp"
+        android:layout_height="71dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/button_category"
+        android:drawableRight="@drawable/ic_arrow_right"
+        android:fontFamily="@font/roboto"
+        android:paddingLeft="50dp"
+        android:paddingRight="20dp"
+        android:text="Tea"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textFontWeight="800"
+        android:textSize="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iceblend_button" />
+
+    <Button
+        android:id="@+id/frappe_button"
+        android:layout_width="330dp"
+        android:layout_height="71dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/button_category"
+        android:drawableRight="@drawable/ic_arrow_right"
+        android:fontFamily="@font/roboto"
+        android:paddingLeft="50dp"
+        android:paddingRight="20dp"
+        android:text="Frappe"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textFontWeight="800"
+        android:textSize="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tea_button" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
