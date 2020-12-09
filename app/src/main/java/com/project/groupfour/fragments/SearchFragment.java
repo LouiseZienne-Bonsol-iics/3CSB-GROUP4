@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import android.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.project.groupfour.R;
 
@@ -29,6 +30,8 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
     private AlertDialog homeDialog;
     private RadioButton homeRadioButton;
     private Button homePopupButton;
+
+    FragmentTransaction ft;
 
     @Nullable
     @Override
@@ -63,8 +66,11 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
         // Specify which button was clicked
         if(R.id.homeSearchIcon == view.getId()){
             // if the user was searching
-            Log.d("systemHell", homeEditText.getText().toString());
-            Toast.makeText(getActivity(), homeEditText.getText().toString(),Toast.LENGTH_SHORT).show();
+            //Log.d("systemHell", homeEditText.getText().toString());
+            //Toast.makeText(getActivity(), homeEditText.getText().toString(),Toast.LENGTH_SHORT).show();
+
+            ft = getFragmentManager().beginTransaction();
+            ft.replace(R.id.fragment_container, new ResultFragment()).commit();
         } else{
             // if the user wanted the search by category system
             switch (view.getId()) {
@@ -117,8 +123,6 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
                     public void onClick(DialogInterface dialog, int id) {
                         Toast.makeText(getActivity(), "Something has been selected", Toast.LENGTH_LONG).show();
                         dialog.cancel();
-
-
                     }
                 });
         homeDialogBuilder.setNegativeButton("Cancel",
@@ -146,10 +150,10 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
                     public void onClick(DialogInterface dialog, int which) {
                         switch (which) {
                             case 0:
-                                Toast.makeText(getActivity(), "Clicked on Hot", Toast.LENGTH_LONG).show();
+                                //Toast.makeText(getActivity(), "Clicked on Hot", Toast.LENGTH_LONG).show();
                                 break;
                             case 1:
-                                Toast.makeText(getActivity(), "Clicked on Cold", Toast.LENGTH_LONG).show();
+                                //Toast.makeText(getActivity(), "Clicked on Cold", Toast.LENGTH_LONG).show();
                                 break;
                         }
 //                        homeDialog.dismiss();
@@ -159,10 +163,10 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
         homeDialogBuilder.setPositiveButton("Ok",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        Toast.makeText(getActivity(), "Something has been selected", Toast.LENGTH_LONG).show();
-                        dialog.cancel();
-
-
+                        //Toast.makeText(getActivity(), "Something has been selected", Toast.LENGTH_LONG).show();
+                        //dialog.cancel();
+                        ft = getFragmentManager().beginTransaction();
+                        ft.replace(R.id.fragment_container, new ResultFragment()).commit();
                     }
                 });
         homeDialogBuilder.setNegativeButton("Cancel",
