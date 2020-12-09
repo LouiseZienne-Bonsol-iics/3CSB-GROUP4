@@ -48,14 +48,19 @@ public class HomeFragment extends Fragment {
         imageSlider.setImageList(slideModels, true);
 
         recyclerView = view.findViewById(R.id.homeRecyclerContent);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(new HomeAdapter(initData()));
+        initData();
+        setRecyclerView();
 
         return view;
     }
 
-    private List <HomeConstructor> initData() {
+    private void setRecyclerView() {
+        HomeAdapter ha = new HomeAdapter(itemList);
+        recyclerView.setAdapter(ha);
+        recyclerView.setHasFixedSize(true);
+    }
+
+    private void initData() {
 
         // This is where you change the photos
         itemList = new ArrayList<>();
@@ -83,9 +88,6 @@ public class HomeFragment extends Fragment {
                 R.drawable.temp_j5,
                 R.drawable.temp_j6,
                 "My Favorites"));
-
-        return itemList;
-
     }
 
 }

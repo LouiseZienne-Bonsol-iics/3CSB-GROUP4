@@ -9,6 +9,15 @@ public class HomeConstructor {
     int cHomeImageB;
     int cHomeImageBR;
     String cHomeName;
+    boolean expandable;
+
+    public boolean isExpandable() {
+        return expandable;
+    }
+
+    public void setExpandable(boolean expandable) {
+        this.expandable = expandable;
+    }
 
     public HomeConstructor(int cHomeImageTL, int cHomeImage, int cHomeImageTR, int cHomeImageBL, int cHomeImageB, int cHomeImageBR, String cHomeName) {
         this.cHomeImageTL = cHomeImageTL;
@@ -18,6 +27,7 @@ public class HomeConstructor {
         this.cHomeImageB = cHomeImageB;
         this.cHomeImageBR = cHomeImageBR;
         this.cHomeName = cHomeName;
+        this.expandable = false;
     }
 
     public int getcHomeImageTL() {
