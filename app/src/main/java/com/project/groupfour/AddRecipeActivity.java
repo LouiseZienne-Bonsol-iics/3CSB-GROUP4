@@ -76,14 +76,14 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_recipe);
 
-        recipeImg = findViewById(R.id.recipe_image);
-        recipeRating = findViewById(R.id.recipe_rating);
-        recipeName = findViewById(R.id.et_recipe_name);
-        prepTime = findViewById(R.id.et_prep_time);
-        ingredients = findViewById(R.id.et_ingredients);
-        recipe = findViewById(R.id.et_recipe);
+        recipeImg = findViewById(R.id.recipe_image_view);
+        recipeRating = findViewById(R.id.recipe_rating_view);
+        recipeName = findViewById(R.id.txt_recipe_name);
+        prepTime = findViewById(R.id.txt_prep_time);
+        ingredients = findViewById(R.id.txt_ingredview);
+        recipe = findViewById(R.id.txt_recipe_procedure);
         uploadPhoto = findViewById(R.id.upload_photo);
-        saveRecipe = findViewById(R.id.save_button);
+        saveRecipe = findViewById(R.id.edit_button);
         deleteRecipe = findViewById(R.id.delete_button);
 
         mStorageRef = FirebaseStorage.getInstance().getReference("Recipes");

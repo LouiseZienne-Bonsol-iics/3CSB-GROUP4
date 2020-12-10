@@ -1,6 +1,7 @@
 package com.project.groupfour.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -22,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.project.groupfour.R;
+import com.project.groupfour.RecipeActivity;
 import com.project.groupfour.ResultsConstructor;
 import com.project.groupfour.adapters.ResultsAdapter;
 import com.project.groupfour.models.RecipeModel;
@@ -96,9 +98,17 @@ public class ResultFragment extends Fragment {
         FirebaseRecyclerAdapter<RecipeModel,RecipeViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<RecipeModel, RecipeViewHolder>
                 (RecipeModel.class, R.layout.result_row, RecipeViewHolder.class, firebaseSearchQuery) {
             @Override
-            protected void populateViewHolder(RecipeViewHolder recipeViewHolder, RecipeModel recipeModel, int i) {
+            protected void populateViewHolder(RecipeViewHolder recipeViewHolder, RecipeModel recipeModel, final int i) {
                 recipeViewHolder.setRecipeName(recipeModel.getRecipeName());
                 recipeViewHolder.setImage(recipeModel.getImageUrl());
+                recipeViewHolder.mView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(getActivity(), RecipeActivity.class);
+                        intent.putExtra("RecipeKey", getRef(i).getKey());
+                        startActivity(intent);
+                    }
+                });
             }
         };
         rv.setAdapter(firebaseRecyclerAdapter);
