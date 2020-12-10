@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +15,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.project.groupfour.R;
 import com.project.groupfour.ResultsConstructor;
 import com.project.groupfour.adapters.ResultsAdapter;
@@ -70,8 +75,26 @@ public class ResultFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+
+        Bundle bundle = this.getArguments();
+        String recipeNameSearch = bundle.getString("recipeName");
+        String cat_sub = bundle.getString("subcats");
+        String searchCheck = bundle.getString("checker");
+
+        Query firebaseSearchQuery;
+
+        if (searchCheck.equals("searchByName")){
+            firebaseSearchQuery = mDatabase.orderByChild("recipeName").startAt(recipeNameSearch).endAt(recipeNameSearch + "\uf8ff");
+        } else if (searchCheck.equals("searchByCategory")) {
+            firebaseSearchQuery = mDatabase.orderByChild("cat_sub").equalTo(cat_sub);
+        } else {
+            firebaseSearchQuery = mDatabase;
+        }
+
+        //Query firebaseSearchQuery = mDatabase.orderByChild("cat_sub").equalTo(cat_sub);
+
         FirebaseRecyclerAdapter<RecipeModel,RecipeViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<RecipeModel, RecipeViewHolder>
-                (RecipeModel.class, R.layout.result_row, RecipeViewHolder.class, mDatabase) {
+                (RecipeModel.class, R.layout.result_row, RecipeViewHolder.class, firebaseSearchQuery) {
             @Override
             protected void populateViewHolder(RecipeViewHolder recipeViewHolder, RecipeModel recipeModel, int i) {
                 recipeViewHolder.setRecipeName(recipeModel.getRecipeName());

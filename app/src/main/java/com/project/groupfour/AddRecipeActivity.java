@@ -42,6 +42,11 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
     private ImageView recipeImg;
     private String category;
     private String subCategory;
+
+    private String c1;
+    private String c2;
+    private String cat_sub;
+
     private RatingBar recipeRating;
     private EditText recipeName;
     private EditText prepTime;
@@ -131,24 +136,36 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
         switch (view.getId()){
             case R.id.coffee_button:
                 category = "Coffee";
+                //cat_sub = "coffee";
+                c1 = "coffee";
+
                 dialog.dismiss();
                 tempSubCatDialog();
                 Toast.makeText(AddRecipeActivity.this, "Coffee Button", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.iceblend_button:
                 category = "Ice Blended";
+                //cat_sub = "ice";
+                c1 = "ice";
+
                 dialog.dismiss();
                 baseSubCatDialog();
                 Toast.makeText(AddRecipeActivity.this, "Ice Blend Button", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.tea_button:
                 category = "Tea";
+                //cat_sub = "tea";
+                c1 = "tea";
+
                 dialog.dismiss();
                 tempSubCatDialog();
                 Toast.makeText(AddRecipeActivity.this, "Tea Button", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.frappe_button:
                 category = "Frappe";
+                //cat_sub = "frappe";
+                c1 = "frappe";
+
                 dialog.dismiss();
                 baseSubCatDialog();
                 Toast.makeText(AddRecipeActivity.this, "Frappe Button", Toast.LENGTH_SHORT).show();
@@ -169,14 +186,23 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
                 switch (which) {
                     case 0:
                         subCategory = "Fruit-Based";
+                        //cat_sub.concat("1");
+                        c2 = "_one";
+
                         Toast.makeText(AddRecipeActivity.this, "Selected Fruit", Toast.LENGTH_LONG).show();
                         break;
                     case 1:
                         subCategory = "Coffee-Based";
+                        //cat_sub.concat("2");
+                        c2 = "_two";
+
                         Toast.makeText(AddRecipeActivity.this, "Selected Coffee", Toast.LENGTH_LONG).show();
                         break;
                     case 2:
                         subCategory = "Milk-Based";
+                        //cat_sub.concat("3");
+                        c2 = "_three";
+
                         Toast.makeText(AddRecipeActivity.this, "Selected Milk", Toast.LENGTH_LONG).show();
                         break;
                 }
@@ -214,10 +240,16 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
                 switch (which) {
                     case 0:
                         subCategory = "Hot";
+                        //cat_sub.concat("1");
+                        c2 = "_one";
+
                         Toast.makeText(AddRecipeActivity.this, "Selected Hot", Toast.LENGTH_LONG).show();
                         break;
                     case 1:
                         subCategory = "Cold";
+                        //cat_sub.concat("2");
+                        c2 = "_two";
+
                         Toast.makeText(AddRecipeActivity.this, "Selected Cold", Toast.LENGTH_LONG).show();
                         break;
                 }
@@ -279,6 +311,8 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
                         String rname = recipeName.getText().toString().trim();
                         String cat = category;
                         String subcat = subCategory;
+                        //String catsub = cat_sub;
+                        String catsub = c1.concat(c2);
                         String rating = String.valueOf(recipeRating.getRating());
                         String ptime = prepTime.getText().toString().trim();
                         String ingred = ingredients.getText().toString();
@@ -290,7 +324,7 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
                         } else {
                             Toast.makeText(AddRecipeActivity.this, "Uploaded Successfully in Database", Toast.LENGTH_LONG).show();
                             //add to Realtime DB in Firebase
-                            RecipeModel uploads = new RecipeModel(rname, cat, subcat, rating, ptime, ingred, rec, downloadUri.toString());
+                            RecipeModel uploads = new RecipeModel(rname, cat, subcat, catsub, rating, ptime, ingred, rec, downloadUri.toString());
                             mDatabaseRef.push().setValue(uploads);
                         }
 

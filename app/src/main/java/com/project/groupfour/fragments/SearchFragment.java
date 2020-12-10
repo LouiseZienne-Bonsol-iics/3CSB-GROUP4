@@ -22,14 +22,21 @@ import com.project.groupfour.R;
 
 public class SearchFragment extends Fragment implements View.OnClickListener{
 
-    EditText homeEditText;
+    EditText searchByName;
     ImageButton homeImageButton;
     Button homeButtonC, homeButtonT, homeButtonJ, homeButtonD;
+
+    Bundle catBundle = new Bundle();
+    ResultFragment fragment = new ResultFragment();
 
     private AlertDialog.Builder homeDialogBuilder;
     private AlertDialog homeDialog;
     private RadioButton homeRadioButton;
     private Button homePopupButton;
+
+    private String c1;
+    private String c2;
+    private String searchChecker;
 
     FragmentTransaction ft;
 
@@ -40,14 +47,14 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
         Log.d("systemHell","Entered SearchFragment");
 
         // for the search bar
-        homeImageButton = (ImageButton) v.findViewById(R.id.homeSearchIcon);
-        homeEditText   = (EditText) v.findViewById(R.id.homeSearch);
+        homeImageButton = (ImageButton) v.findViewById(R.id.btn_search);
+        searchByName   = (EditText) v.findViewById(R.id.et_searchByName);
 
         // for the category search
-        homeButtonC = (Button) v.findViewById(R.id.homeCoffee);
-        homeButtonT = (Button) v.findViewById(R.id.homeTea);
-        homeButtonJ = (Button) v.findViewById(R.id.homeJuice);
-        homeButtonD = (Button) v.findViewById(R.id.homeDairy);
+        homeButtonC = (Button) v.findViewById(R.id.catCoffee);
+        homeButtonT = (Button) v.findViewById(R.id.catTea);
+        homeButtonJ = (Button) v.findViewById(R.id.catIceBlend);
+        homeButtonD = (Button) v.findViewById(R.id.catFrappe);
 
         homeButtonC.setOnClickListener(this);
         homeButtonT.setOnClickListener(this);
@@ -62,31 +69,41 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View view) {
-
         // Specify which button was clicked
-        if(R.id.homeSearchIcon == view.getId()){
-            // if the user was searching
-            //Log.d("systemHell", homeEditText.getText().toString());
-            //Toast.makeText(getActivity(), homeEditText.getText().toString(),Toast.LENGTH_SHORT).show();
+        if(R.id.btn_search == view.getId()){
+            // if the user was searching by name
+            searchChecker = "searchByName";
 
-            ft = getFragmentManager().beginTransaction();
-            ft.replace(R.id.fragment_container, new ResultFragment()).commit();
+            Bundle bundle = new Bundle();
+            bundle.putString("recipeName",searchByName.getText().toString());
+            bundle.putString("checker",searchChecker);
+
+            fragment.setArguments(bundle);
+            getFragmentManager().beginTransaction().replace(R.id.fragment_container,fragment).commit();
         } else{
             // if the user wanted the search by category system
             switch (view.getId()) {
-                case R.id.homeCoffee:
+                case R.id.catCoffee:
+                    //put something to save the category
+                    c1 = "coffee";
                     Log.d("systemHell", "Message 1");
                     createNewContactDialog();
                     break;
-                case R.id.homeJuice:
+                case R.id.catIceBlend:
+                    //put something to save the category
+                    c1 = "ice";
                     Log.d("systemHell", "Message 2");
                     createOtherSubContactDialog();
                     break;
-                case R.id.homeTea:
+                case R.id.catTea:
+                    //put something to save the category
+                    c1 = "tea";
                     Log.d("systemHell", "Message 3");
                     createNewContactDialog();
                     break;
-                case R.id.homeDairy:
+                case R.id.catFrappe:
+                    //put something to save the category
+                    c1 = "frappe";
                     Log.d("systemHell", "Message 4");
                     createOtherSubContactDialog();
                     break;
@@ -106,12 +123,22 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
             public void onClick(DialogInterface dialog, int which) {
                 switch (which) {
                     case 0:
-                        Toast.makeText(getActivity(), "Clicked on Fruit", Toast.LENGTH_LONG).show();
+                        c2 = "_one";
+                        c1 = c1.concat(c2);
+                        catBundle.putString("subcats", c1);
+                        //Toast.makeText(getActivity(), "Clicked on Fruit", Toast.LENGTH_LONG).show();
                         break;
                     case 1:
-                        Toast.makeText(getActivity(), "Clicked on Coffee", Toast.LENGTH_LONG).show();
+                        c2 = "_two";
+                        c1 = c1.concat(c2);
+                        catBundle.putString("subcats", c1);
+                        //Toast.makeText(getActivity(), "Clicked on Coffee", Toast.LENGTH_LONG).show();
                         break;
                     case 2:
+                        c2 = "_three";
+                        c1 = c1.concat(c2);
+                        catBundle.putString("subcats", c1);
+                        //catBundle.putString("subCategory", "Milk-Based");
                         Toast.makeText(getActivity(), "Clicked on Milk", Toast.LENGTH_LONG).show();
                         break;
                 }
@@ -121,14 +148,20 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
         homeDialogBuilder.setPositiveButton("Ok",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        Toast.makeText(getActivity(), "Something has been selected", Toast.LENGTH_LONG).show();
+                        searchChecker = "searchByCategory";
+                        catBundle.putString("checker", searchChecker);
+
+                        fragment.setArguments(catBundle);
+                        getFragmentManager().beginTransaction().replace(R.id.fragment_container,fragment).commit();
+
+                        Toast.makeText(getActivity(), "Here are the results", Toast.LENGTH_LONG).show();
                         dialog.cancel();
                     }
                 });
         homeDialogBuilder.setNegativeButton("Cancel",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        Toast.makeText(getActivity(), "Cancel Culture Legoo", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), "Cancelled", Toast.LENGTH_LONG).show();
                         dialog.cancel();
                     }
                 });
@@ -150,9 +183,15 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
                     public void onClick(DialogInterface dialog, int which) {
                         switch (which) {
                             case 0:
+                                c2 = "_one";
+                                c1 = c1.concat(c2);
+                                catBundle.putString("subcats", c1);
                                 //Toast.makeText(getActivity(), "Clicked on Hot", Toast.LENGTH_LONG).show();
                                 break;
                             case 1:
+                                c2 = "_two";
+                                c1 = c1.concat(c2);
+                                catBundle.putString("subcats", c1);
                                 //Toast.makeText(getActivity(), "Clicked on Cold", Toast.LENGTH_LONG).show();
                                 break;
                         }
@@ -163,16 +202,19 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
         homeDialogBuilder.setPositiveButton("Ok",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        //Toast.makeText(getActivity(), "Something has been selected", Toast.LENGTH_LONG).show();
-                        //dialog.cancel();
-                        ft = getFragmentManager().beginTransaction();
-                        ft.replace(R.id.fragment_container, new ResultFragment()).commit();
+                        searchChecker = "searchByCategory";
+                        catBundle.putString("checker", searchChecker);
+
+                        fragment.setArguments(catBundle);
+                        getFragmentManager().beginTransaction().replace(R.id.fragment_container,fragment).commit();
+                        Toast.makeText(getActivity(), "Here are the Reults", Toast.LENGTH_LONG).show();
+                        dialog.cancel();
                     }
                 });
         homeDialogBuilder.setNegativeButton("Cancel",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                    Toast.makeText(getActivity(), "Cancel Culture Legoo", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), "Cancelled", Toast.LENGTH_LONG).show();
                         dialog.cancel();
                     }
                 });
