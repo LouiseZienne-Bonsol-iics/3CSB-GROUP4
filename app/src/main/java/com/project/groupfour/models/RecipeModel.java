@@ -1,6 +1,6 @@
 package com.project.groupfour.models;
 
-public class UploadRecipeModel {
+public class RecipeModel {
     private String recipeName;
     private String category;
     private String subCategory;
@@ -10,11 +10,11 @@ public class UploadRecipeModel {
     private String recipe;
     private String imageUrl;
 
-    public UploadRecipeModel(){
+    public RecipeModel(){
         //empty constructor needed
     }
 
-    public UploadRecipeModel(String recipeName, String category, String subCategory, String recipeRating, String prepTime, String ingredients, String recipe, String imageUrl) {
+    public RecipeModel(String recipeName, String category, String subCategory, String recipeRating, String prepTime, String ingredients, String recipe, String imageUrl) {
         if(recipeName.trim().equals("")){
             recipeName = "Unnamed Recipe";
         }

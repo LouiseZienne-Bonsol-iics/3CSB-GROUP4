@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +27,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -36,8 +34,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
-import com.project.groupfour.models.UploadRecipeModel;
-import com.squareup.picasso.Picasso;
+import com.project.groupfour.models.RecipeModel;
 
 public class AddRecipeActivity extends AppCompatActivity implements View.OnClickListener{
     private static final int PICK_IMAGE_REQUEST = 1;
@@ -293,7 +290,7 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
                         } else {
                             Toast.makeText(AddRecipeActivity.this, "Uploaded Successfully in Database", Toast.LENGTH_LONG).show();
                             //add to Realtime DB in Firebase
-                            UploadRecipeModel uploads = new UploadRecipeModel(rname, cat, subcat, rating, ptime, ingred, rec, downloadUri.toString());
+                            RecipeModel uploads = new RecipeModel(rname, cat, subcat, rating, ptime, ingred, rec, downloadUri.toString());
                             mDatabaseRef.push().setValue(uploads);
                         }
 

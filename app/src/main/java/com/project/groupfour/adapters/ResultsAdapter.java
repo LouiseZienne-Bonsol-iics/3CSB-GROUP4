@@ -1,6 +1,5 @@
 package com.project.groupfour.adapters;
 
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +32,7 @@ public class ResultsAdapter extends RecyclerView.Adapter<ResultsAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ResultsAdapter.ViewHolder holder, int position) {
-        holder.iv.setImageResource(lrc.get(position).getPic());
+        holder.iv.setImageResource(lrc.get(position).getImageUrl());
         holder.tv.setText(lrc.get(position).getName());
     }
 
