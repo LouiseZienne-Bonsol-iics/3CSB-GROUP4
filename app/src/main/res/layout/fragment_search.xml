@@ -9,7 +9,7 @@
 
 
     <EditText
-        android:id="@+id/homeSearch"
+        android:id="@+id/et_searchByName"
         android:layout_width="320dp"
         android:layout_height="70dp"
         android:layout_marginTop="36dp"
@@ -43,7 +43,7 @@
         app:layout_constraintVertical_bias="0.308" />
 
     <Button
-        android:id="@+id/homeCoffee"
+        android:id="@+id/catCoffee"
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:background="@drawable/loginbutton"
@@ -62,7 +62,7 @@
         />
 
     <Button
-        android:id="@+id/homeJuice"
+        android:id="@+id/catIceBlend"
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:background="@drawable/loginbutton"
@@ -76,12 +76,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/homeCoffee"
+        app:layout_constraintTop_toBottomOf="@+id/catCoffee"
         app:layout_constraintVertical_bias="0.134"
         />
 
     <Button
-        android:id="@+id/homeTea"
+        android:id="@+id/catTea"
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:background="@drawable/loginbutton"
@@ -95,12 +95,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/homeJuice"
+        app:layout_constraintTop_toBottomOf="@+id/catIceBlend"
         app:layout_constraintVertical_bias="0.223"
         />
 
     <Button
-        android:id="@+id/homeDairy"
+        android:id="@+id/catFrappe"
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:background="@drawable/loginbutton"
@@ -114,7 +114,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/homeTea"
+        app:layout_constraintTop_toBottomOf="@+id/catTea"
         />
 
     <TextView
@@ -140,7 +140,7 @@
         android:background="@color/Grey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView5"
-        app:layout_constraintTop_toBottomOf="@+id/homeSearch" />
+        app:layout_constraintTop_toBottomOf="@+id/et_searchByName" />
 
     <View
         android:layout_width="160dp"
@@ -153,17 +153,17 @@
         android:background="@color/Grey"
         app:layout_constraintEnd_toStartOf="@+id/textView5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/homeSearch" />
+        app:layout_constraintTop_toBottomOf="@+id/et_searchByName" />
 
     <ImageButton
-        android:id="@+id/homeSearchIcon"
+        android:id="@+id/btn_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/homeSearch"
+        app:layout_constraintEnd_toEndOf="@+id/et_searchByName"
         app:layout_constraintHorizontal_bias="0.042"
-        app:layout_constraintStart_toStartOf="@+id/homeSearch"
-        app:layout_constraintTop_toTopOf="@+id/homeSearch"
+        app:layout_constraintStart_toStartOf="@+id/et_searchByName"
+        app:layout_constraintTop_toTopOf="@+id/et_searchByName"
         app:srcCompat="@drawable/ic_baseline_search_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

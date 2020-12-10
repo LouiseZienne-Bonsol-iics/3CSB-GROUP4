@@ -1,20 +1,29 @@
 package com.project.groupfour.models;
 
-public class UploadRecipeModel {
+public class RecipeModel {
     private String recipeName;
     private String category;
     private String subCategory;
+    private String cat_sub;
     private String recipeRating;
     private String prepTime;
     private String ingredients;
     private String recipe;
     private String imageUrl;
 
-    public UploadRecipeModel(){
+    public String getCat_sub() {
+        return cat_sub;
+    }
+
+    public void setCat_sub(String cat_sub) {
+        this.cat_sub = cat_sub;
+    }
+
+    public RecipeModel(){
         //empty constructor needed
     }
 
-    public UploadRecipeModel(String recipeName, String category, String subCategory, String recipeRating, String prepTime, String ingredients, String recipe, String imageUrl) {
+    public RecipeModel(String recipeName, String category, String subCategory, String cat_sub, String recipeRating, String prepTime, String ingredients, String recipe, String imageUrl) {
         if(recipeName.trim().equals("")){
             recipeName = "Unnamed Recipe";
         }
@@ -22,6 +31,7 @@ public class UploadRecipeModel {
         this.recipeName = recipeName;
         this.category = category;
         this.subCategory = subCategory;
+        this.cat_sub =cat_sub;
         this.recipeRating = recipeRating;
         this.prepTime = prepTime;
         this.ingredients = ingredients;

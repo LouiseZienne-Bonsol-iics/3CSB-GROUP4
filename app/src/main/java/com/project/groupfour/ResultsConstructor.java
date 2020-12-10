@@ -1,33 +1,30 @@
 package com.project.groupfour;
 
-import com.project.groupfour.adapters.ResultsAdapter;
-
 public class ResultsConstructor {
-    String name;
-    int pic;
+    String recipeName;
+    int imageUrl;
 
     ResultsConstructor(){
-
     }
 
     public String getName() {
-        return name;
+        return recipeName;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.recipeName = name;
     }
 
-    public int getPic() {
-        return pic;
+    public int getImageUrl() {
+        return imageUrl;
     }
 
-    public void setPic(int pic) {
-        this.pic = pic;
+    public void setImageUrl(int imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public ResultsConstructor(String name, int pic){
-        this.name = name;
-        this.pic = pic;
+        this.recipeName = name;
+        this.imageUrl = pic;
     }
 }

@@ -1,5 +1,6 @@
 package com.project.groupfour;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -11,14 +12,28 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RatingBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
+
 public class RecipeActivity extends AppCompatActivity {
+    private ImageView recipeImg;
+    private TextView recipeName;
+    private RatingBar recipeRating;
+    private TextView  prepTime;
+    private TextView recipeIngred;
+    private TextView recipe;
 
-
-    String[] IG, SP;
-    ListView items, steps;
+    DatabaseReference ref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,13 +43,44 @@ public class RecipeActivity extends AppCompatActivity {
         /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);*/
 
-        IG = getResources().getStringArray(R.array.ingredients);
-        SP = getResources().getStringArray(R.array.step);
-        items = findViewById(R.id.list_ingredient);
-        steps = findViewById(R.id.list_recipe);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.recipe_row, R.id.item, IG);
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, R.layout.recipe_row, R.id.item, SP);
-        items.setAdapter(adapter);
-        steps.setAdapter(adapter2);
+        recipeImg = findViewById(R.id.recipe_image_view);
+        recipeName = findViewById(R.id.txt_recipe_name);
+        recipeRating = findViewById(R.id.recipe_rating_view);
+        prepTime = findViewById(R.id.txt_prep_time);
+        recipeIngred = findViewById(R.id.txt_ingredview);
+        recipe = findViewById(R.id.txt_recipe_procedure);
+
+        ref = FirebaseDatabase.getInstance().getReference().child("Recipes");
+
+        String RecipeKey = getIntent().getStringExtra("RecipeKey");
+
+        ref.child(RecipeKey).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    String img = dataSnapshot.child("imageUrl").getValue().toString();
+                    String rName = dataSnapshot.child("recipeName").getValue().toString();
+                    String rate = dataSnapshot.child("recipeRating").getValue().toString();
+                    String pTime = dataSnapshot.child("prepTime").getValue().toString();
+                    String ingred = dataSnapshot.child("ingredients").getValue().toString();
+                    String recip = dataSnapshot.child("recipe").getValue().toString();
+
+                    Picasso.get().load(img).into(recipeImg);
+                    recipeName.setText(rName);
+                    recipeRating.setRating(Float.parseFloat(rate));
+                    prepTime.setText(pTime);
+                    recipeIngred.setText(ingred);
+                    recipe.setText(recip);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
     }
 }
