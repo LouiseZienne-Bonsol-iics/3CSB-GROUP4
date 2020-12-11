@@ -41,6 +41,7 @@ public class RecipeActivity extends AppCompatActivity {
     Toolbar toolbar;
     private TextView toolName;
     String favItem;
+    boolean checkFav;
 
     DatabaseReference RecipeRef;
     DatabaseReference UserRef;
@@ -111,11 +112,25 @@ public class RecipeActivity extends AppCompatActivity {
     }
 
     public void addToFavorites(View v) {
-        //
+        UserRef.child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                checkFav = dataSnapshot.child("Favorites").hasChild(favItem);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
         String UserKey = getIntent().getStringExtra("RecipeKey");
         HashMap<String, Object> map = new HashMap<>();
         map.put(favItem, UserKey);
-        UserRef.child(mAuth.getCurrentUser().getUid()).child("Favorites").updateChildren(map);
+        if(!checkFav){
+            UserRef.child(mAuth.getCurrentUser().getUid()).child("Favorites").updateChildren(map);
+        }else{
+            UserRef.child(mAuth.getCurrentUser().getUid()).child("Favorites").child(favItem).removeValue();
+        }
 
     }
 
