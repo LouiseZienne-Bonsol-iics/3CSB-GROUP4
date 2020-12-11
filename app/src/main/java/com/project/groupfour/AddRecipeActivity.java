@@ -316,7 +316,7 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
                         String rating = String.valueOf(recipeRating.getRating());
                         String ptime = prepTime.getText().toString().trim();
                         String ingred = ingredients.getText().toString();
-                        String rec = recipe.getText().toString();
+                          String rec = recipe.getText().toString();
 
                         if(TextUtils.isEmpty(rname) || TextUtils.isEmpty(cat) || TextUtils.isEmpty(subcat) || TextUtils.isEmpty(rating) ||
                                 TextUtils.isEmpty(ptime) || TextUtils.isEmpty(ingred) || TextUtils.isEmpty(rec)){

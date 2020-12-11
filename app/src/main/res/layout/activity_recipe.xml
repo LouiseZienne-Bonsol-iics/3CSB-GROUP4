@@ -164,6 +164,19 @@
             app:layout_constraintStart_toStartOf="@+id/txt_ingredients"
             app:layout_constraintTop_toBottomOf="@+id/txt_recipe" />
 
+        <ImageButton
+            android:id="@+id/imageButton5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="addToFavorites"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.044"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.567"
+            app:srcCompat="@drawable/ic_favorites" />
+
         <Button
             android:id="@+id/edit_button"
             android:layout_width="120dp"
