@@ -462,6 +462,7 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
                                 postValues.put("category", cat);
                                 postValues.put("subCategory", subcat);
                                 postValues.put("cat_sub", catsub);
+                                postValues.put("imageUrl", updateImgTemp);
                                 mDatabaseRef.child(recipeID).updateChildren(postValues);
                                 pd.dismiss();
                                 Toast.makeText(AddRecipeActivity.this, "Updated Successfully", Toast.LENGTH_LONG).show();
