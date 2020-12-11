@@ -7,6 +7,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,8 +16,10 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText email;
@@ -89,4 +92,22 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        FirebaseUser mUser = mAuth.getCurrentUser();
+
+        if(mUser!=null){
+            Intent i = new Intent(LoginActivity.this,UserHome.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(i);
+        } else {
+            //Toast.makeText(LoginActivity.this, "Welcome to Home Brew", Toast.LENGTH_SHORT).show();
+            Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Welcome To Home Brew", Snackbar.LENGTH_LONG);
+            snackbar.show();
+        }
+
+
+    }
 }

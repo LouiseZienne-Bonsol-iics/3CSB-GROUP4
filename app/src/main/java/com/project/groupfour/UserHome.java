@@ -135,10 +135,10 @@ public class UserHome extends AppCompatActivity implements NavigationView.OnNavi
     private void addRecipeVisibility(){
         Log.d("RecipeTest", "went inside new method");
         SharedPreferences sp = getSharedPreferences("prefs", MODE_PRIVATE);
-        if(sp.getString("role", "").equals("User")){
-            navigationView.getMenu().findItem(R.id.nav_addrecipe).setVisible(false);
-        } else {
+        if(sp.getString("role", "").equals("Admin")){
             navigationView.getMenu().findItem(R.id.nav_addrecipe).setVisible(true);
+        } else {
+            navigationView.getMenu().findItem(R.id.nav_addrecipe).setVisible(false);
         }
     }
 

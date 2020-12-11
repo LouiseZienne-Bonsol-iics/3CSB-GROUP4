@@ -36,6 +36,7 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
 
     private String c1;
     private String c2;
+    private String c3;
     private String searchChecker;
 
     FragmentTransaction ft;
@@ -86,24 +87,28 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
                 case R.id.catCoffee:
                     //put something to save the category
                     c1 = "coffee";
+                    c3 = "coffee";
                     Log.d("systemHell", "Message 1");
                     createNewContactDialog();
                     break;
                 case R.id.catIceBlend:
                     //put something to save the category
                     c1 = "ice";
+                    c3 = "ice";
                     Log.d("systemHell", "Message 2");
                     createOtherSubContactDialog();
                     break;
                 case R.id.catTea:
                     //put something to save the category
                     c1 = "tea";
+                    c3 = "tea";
                     Log.d("systemHell", "Message 3");
                     createNewContactDialog();
                     break;
                 case R.id.catFrappe:
                     //put something to save the category
                     c1 = "frappe";
+                    c3 = "frappe";
                     Log.d("systemHell", "Message 4");
                     createOtherSubContactDialog();
                     break;
@@ -127,18 +132,24 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
                         c1 = c1.concat(c2);
                         catBundle.putString("subcats", c1);
                         //Toast.makeText(getActivity(), "Clicked on Fruit", Toast.LENGTH_LONG).show();
+                        c1 = null;
+                        c1 = c3;
                         break;
                     case 1:
                         c2 = "_two";
                         c1 = c1.concat(c2);
                         catBundle.putString("subcats", c1);
                         //Toast.makeText(getActivity(), "Clicked on Coffee", Toast.LENGTH_LONG).show();
+                        c1 = null;
+                        c1 = c3;
                         break;
                     case 2:
                         c2 = "_three";
                         c1 = c1.concat(c2);
                         catBundle.putString("subcats", c1);
                         //catBundle.putString("subCategory", "Milk-Based");
+                        c1 = null;
+                        c1 = c3;
                         Toast.makeText(getActivity(), "Clicked on Milk", Toast.LENGTH_LONG).show();
                         break;
                 }
@@ -187,12 +198,16 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
                                 c1 = c1.concat(c2);
                                 catBundle.putString("subcats", c1);
                                 //Toast.makeText(getActivity(), "Clicked on Hot", Toast.LENGTH_LONG).show();
+                                c1 = null;
+                                c1 = c3;
                                 break;
                             case 1:
                                 c2 = "_two";
                                 c1 = c1.concat(c2);
                                 catBundle.putString("subcats", c1);
                                 //Toast.makeText(getActivity(), "Clicked on Cold", Toast.LENGTH_LONG).show();
+                                c1 = null;
+                                c1 = c3;
                                 break;
                         }
 //                        homeDialog.dismiss();
