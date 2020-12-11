@@ -30,13 +30,21 @@ import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 import com.project.groupfour.models.RecipeModel;
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AddRecipeActivity extends AppCompatActivity implements View.OnClickListener{
     private static final int PICK_IMAGE_REQUEST = 1;
@@ -73,6 +81,10 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
     //firebase stuff
     private StorageReference mStorageRef;
     private DatabaseReference mDatabaseRef;
+
+    private ArrayList<String> recipeData = new ArrayList<>();
+    private String recipeID;
+    String prevActivity;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -140,6 +152,26 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
             public void onClick(View view) {
                 /*Intent i = new Intent(AddRecipeActivity.this, UserHome.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(i);*/
+            }
+        });
+
+        Intent i = getIntent();
+        recipeData = (ArrayList<String>) i.getSerializableExtra("RECIPE_DATA");
+        prevActivity = i.getStringExtra("FROM_ACTIVITY");
+        if(prevActivity.equals("RecipeActivity")){
+            deleteRecipe.setVisibility(View.VISIBLE);
+            deleteAndUpdateRecipe();
+        }
+
+        deleteRecipe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pd.setMessage("Deleting Data");
+                pd.show();
+                mDatabaseRef.child(recipeID).removeValue();
+                pd.dismiss();
+                Intent i = new Intent(AddRecipeActivity.this, UserHome.class);
+                startActivity(i);
             }
         });
     }
@@ -211,7 +243,11 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
         subCatDialogBuilder.setPositiveButton("Ok",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        uploadRecipe();
+                        if(prevActivity.equals("RecipeActivity")){
+                            updateRecipe();
+                        }else{
+                            uploadRecipe();
+                        }
                     }
                 });
         subCatDialogBuilder.setNegativeButton("Cancel",
@@ -256,7 +292,11 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
         subCatDialogBuilder.setPositiveButton("Ok",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        uploadRecipe();
+                        if(prevActivity.equals("RecipeActivity")){
+                            updateRecipe();
+                        }else{
+                            uploadRecipe();
+                        }
                     }
                 });
         subCatDialogBuilder.setNegativeButton("Cancel",
@@ -363,5 +403,57 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
             finish(); // close this activity and return to preview activity (if there is any)
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void deleteAndUpdateRecipe(){
+        recipeID = recipeData.get(0);
+        Picasso.get().load(recipeData.get(1)).into(recipeImg);
+        recipeName.setText(recipeData.get(2));
+        recipeRating.setRating(Float.parseFloat(recipeData.get(3)));
+        prepTime.setText(recipeData.get(4));
+        ingredients.setText(recipeData.get(5));
+        recipe.setText(recipeData.get(6));
+    }
+
+    public void updateRecipe(){
+        //Toast.makeText(this, "Hello! " + recipeData.get(2), Toast.LENGTH_SHORT).show();
+        pd.setMessage("Updating, please wait");
+        pd.show();
+
+        final String rname = recipeName.getText().toString().trim();
+        final String cat = category;
+        final String subcat = subCategory;
+        final String catsub = c1.concat(c2);
+        final String rating = String.valueOf(recipeRating.getRating());
+        final String ptime = prepTime.getText().toString().trim();
+        final String ingred = ingredients.getText().toString();
+        final String rec = recipe.getText().toString();
+
+        mDatabaseRef.child(recipeID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Map <String, Object> postValues = new HashMap<String,Object>();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    postValues.put(snapshot.getKey(),snapshot.getValue());
+                }
+                postValues.put("recipeName", rname);
+                postValues.put("ingredients", ingred);
+                postValues.put("prepTime", ptime);
+                postValues.put("recipeRating", rating);
+                postValues.put("recipe", rec);
+                postValues.put("category", cat);
+                postValues.put("subCategory", subcat);
+                postValues.put("cat_sub", catsub);
+                mDatabaseRef.child(recipeID).updateChildren(postValues);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        pd.dismiss();
+        Toast.makeText(AddRecipeActivity.this, "Updated Successfully", Toast.LENGTH_LONG).show();
     }
 }
