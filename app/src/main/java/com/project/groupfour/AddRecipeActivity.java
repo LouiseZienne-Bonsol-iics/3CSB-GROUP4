@@ -184,28 +184,28 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
                 c1 = "coffee";
                 dialog.dismiss();
                 tempSubCatDialog();
-                Toast.makeText(AddRecipeActivity.this, "Coffee Button", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(AddRecipeActivity.this, "Coffee Button", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.iceblend_button:
                 category = "Ice Blended";
                 c1 = "ice";
                 dialog.dismiss();
                 baseSubCatDialog();
-                Toast.makeText(AddRecipeActivity.this, "Ice Blend Button", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(AddRecipeActivity.this, "Ice Blend Button", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.tea_button:
                 category = "Tea";
                 c1 = "tea";
                 dialog.dismiss();
                 tempSubCatDialog();
-                Toast.makeText(AddRecipeActivity.this, "Tea Button", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(AddRecipeActivity.this, "Tea Button", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.frappe_button:
                 category = "Frappe";
                 c1 = "frappe";
                 dialog.dismiss();
                 baseSubCatDialog();
-                Toast.makeText(AddRecipeActivity.this, "Frappe Button", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(AddRecipeActivity.this, "Frappe Button", Toast.LENGTH_SHORT).show();
                 break;
         }
     }
@@ -224,17 +224,17 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
                     case 0:
                         subCategory = "Fruit-Based";
                         c2 = "_one";
-                        Toast.makeText(AddRecipeActivity.this, "Selected Fruit", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(AddRecipeActivity.this, "Selected Fruit", Toast.LENGTH_LONG).show();
                         break;
                     case 1:
                         subCategory = "Coffee-Based";
                         c2 = "_two";
-                        Toast.makeText(AddRecipeActivity.this, "Selected Coffee", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(AddRecipeActivity.this, "Selected Coffee", Toast.LENGTH_LONG).show();
                         break;
                     case 2:
                         subCategory = "Milk-Based";
                         c2 = "_three";
-                        Toast.makeText(AddRecipeActivity.this, "Selected Milk", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(AddRecipeActivity.this, "Selected Milk", Toast.LENGTH_LONG).show();
                         break;
                 }
             }
@@ -277,13 +277,13 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
                         subCategory = "Hot";
                         c2 = "_one";
 
-                        Toast.makeText(AddRecipeActivity.this, "Selected Hot", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(AddRecipeActivity.this, "Selected Hot", Toast.LENGTH_LONG).show();
                         break;
                     case 1:
                         subCategory = "Cold";
                         c2 = "_two";
 
-                        Toast.makeText(AddRecipeActivity.this, "Selected Cold", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(AddRecipeActivity.this, "Selected Cold", Toast.LENGTH_LONG).show();
                         break;
                 }
             }
@@ -417,9 +417,6 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
 
     public void updateRecipe(){
         //Toast.makeText(this, "Hello! " + recipeData.get(2), Toast.LENGTH_SHORT).show();
-        pd.setMessage("Updating, please wait");
-        pd.show();
-
         final String rname = recipeName.getText().toString().trim();
         final String cat = category;
         final String subcat = subCategory;
@@ -429,31 +426,91 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
         final String ingred = ingredients.getText().toString();
         final String rec = recipe.getText().toString();
 
-        mDatabaseRef.child(recipeID).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Map <String, Object> postValues = new HashMap<String,Object>();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    postValues.put(snapshot.getKey(),snapshot.getValue());
+        pd.setMessage("Updating, please wait");
+        pd.show();
+
+        if(imageUri != null) {
+            final StorageReference srUpload = mStorageRef.child(System.currentTimeMillis() + "." + getFileExtension(imageUri));
+            StorageTask uploadTask = srUpload.putFile(imageUri);
+            uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                @Override
+                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                    if (!task.isSuccessful()) {
+                        throw task.getException();
+                    }
+                    return srUpload.getDownloadUrl();
                 }
-                postValues.put("recipeName", rname);
-                postValues.put("ingredients", ingred);
-                postValues.put("prepTime", ptime);
-                postValues.put("recipeRating", rating);
-                postValues.put("recipe", rec);
-                postValues.put("category", cat);
-                postValues.put("subCategory", subcat);
-                postValues.put("cat_sub", catsub);
-                mDatabaseRef.child(recipeID).updateChildren(postValues);
-            }
+            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                @Override
+                public void onComplete(@NonNull Task<Uri> task) {
+                    if (task.isSuccessful()) {
+                        Uri downloadUri = task.getResult();
+                        final String updateImgTemp = downloadUri.toString();
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+                        mDatabaseRef.child(recipeID).addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                Map<String, Object> postValues = new HashMap<String, Object>();
+                                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                    postValues.put(snapshot.getKey(), snapshot.getValue());
+                                }
+                                postValues.put("recipeName", rname);
+                                postValues.put("ingredients", ingred);
+                                postValues.put("prepTime", ptime);
+                                postValues.put("recipeRating", rating);
+                                postValues.put("recipe", rec);
+                                postValues.put("category", cat);
+                                postValues.put("subCategory", subcat);
+                                postValues.put("cat_sub", catsub);
+                                postValues.put("imageUrl", updateImgTemp);
+                                mDatabaseRef.child(recipeID).updateChildren(postValues);
+                                pd.dismiss();
+                                Toast.makeText(AddRecipeActivity.this, "Updated Successfully", Toast.LENGTH_LONG).show();
+                            }
 
-            }
-        });
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-        pd.dismiss();
-        Toast.makeText(AddRecipeActivity.this, "Updated Successfully", Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    }else{
+                        pd.dismiss();
+                        Toast.makeText(AddRecipeActivity.this, "Sad", Toast.LENGTH_LONG).show();
+                    }
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    pd.dismiss();
+                    Toast.makeText(AddRecipeActivity.this, "Update Failed no. 2", Toast.LENGTH_LONG).show();
+                }
+            });
+        }else{
+            mDatabaseRef.child(recipeID).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    Map<String, Object> postValues = new HashMap<String, Object>();
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        postValues.put(snapshot.getKey(), snapshot.getValue());
+                    }
+                    postValues.put("recipeName", rname);
+                    postValues.put("ingredients", ingred);
+                    postValues.put("prepTime", ptime);
+                    postValues.put("recipeRating", rating);
+                    postValues.put("recipe", rec);
+                    postValues.put("category", cat);
+                    postValues.put("subCategory", subcat);
+                    postValues.put("cat_sub", catsub);
+                    mDatabaseRef.child(recipeID).updateChildren(postValues);
+                    pd.dismiss();
+                    Toast.makeText(AddRecipeActivity.this, "Updated Successfully", Toast.LENGTH_LONG).show();
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+        }
     }
 }
