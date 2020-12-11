@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/UiBackground"
     tools:context=".AddRecipeActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -59,12 +60,12 @@
         android:layout_width="233dp"
         android:layout_height="40dp"
         android:layout_margin="0dp"
-        android:backgroundTint="@color/Black"
+        android:theme="@style/Theme.Rating"
         android:max="5"
         android:padding="0dp"
         android:scaleX=".7"
         android:scaleY=".7"
-        android:stepSize="1"
+        android:stepSize="0.5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_recipe_name" />

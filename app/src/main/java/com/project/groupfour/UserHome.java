@@ -7,12 +7,14 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,6 +43,8 @@ public class UserHome extends AppCompatActivity implements NavigationView.OnNavi
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
 
+    ProgressDialog pd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +56,8 @@ public class UserHome extends AppCompatActivity implements NavigationView.OnNavi
         //initialize firebase objects
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
+
+        pd = new ProgressDialog(this);
 
         //Users db directory in firebase
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(firebaseUser.getUid());
@@ -115,7 +121,7 @@ public class UserHome extends AppCompatActivity implements NavigationView.OnNavi
                         new SettingsFragment()).commit();
                 break;
             case R.id.nav_addrecipe:
-                Intent i = new Intent(this, AddRecipeActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                Intent i = new Intent(this, AddRecipeActivity.class);
                 startActivity(i);
                 navigationView.setCheckedItem(R.id.nav_home);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
@@ -129,10 +135,10 @@ public class UserHome extends AppCompatActivity implements NavigationView.OnNavi
     private void addRecipeVisibility(){
         Log.d("RecipeTest", "went inside new method");
         SharedPreferences sp = getSharedPreferences("prefs", MODE_PRIVATE);
-        if(sp.getString("role", "").equals("User")){
-            navigationView.getMenu().findItem(R.id.nav_addrecipe).setVisible(false);
-        } else {
+        if(sp.getString("role", "").equals("Admin")){
             navigationView.getMenu().findItem(R.id.nav_addrecipe).setVisible(true);
+        } else {
+            navigationView.getMenu().findItem(R.id.nav_addrecipe).setVisible(false);
         }
     }
 
@@ -149,6 +155,17 @@ public class UserHome extends AppCompatActivity implements NavigationView.OnNavi
     protected void onDestroy() {
         super.onDestroy();
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+    }
+
+    public void logout(View view) {
+        pd.setMessage("Logging Out, please wait.");
+        pd.show();
+        firebaseAuth.signOut();
+        finish();
+        pd.dismiss();
+        Intent i = new Intent(UserHome.this,LoginActivity.class);
+        startActivity(i);
+        Toast.makeText(UserHome.this, "User logged out.", Toast.LENGTH_SHORT).show();
     }
 }
 

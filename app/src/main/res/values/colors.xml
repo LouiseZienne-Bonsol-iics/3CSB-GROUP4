@@ -7,4 +7,7 @@
     <color name="Black">#000000</color>
     <color name="Grey">#777777</color>
     <color name="HomeGrey">#F3F3F3</color>
+    <color name="LightCyan">#85CBB7</color>
+    <color name="UiBackground">#f3f3f3</color>
+    <color name="StarYellow">#f1c232</color>
 </resources>
