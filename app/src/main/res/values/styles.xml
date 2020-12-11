@@ -5,6 +5,7 @@
         <item name="colorPrimary">@color/Primary</item>
         <item name="colorPrimaryDark">@color/Dark</item>
         <item name="colorAccent">@color/Light</item>
+        <item name="drawerArrowStyle">@style/DrawerIcon</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -12,4 +13,11 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="DrawerIcon" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="color">#A3FAE2</item>
+    </style>
+
+    <style name="Theme.Rating" parent="Theme.AppCompat.Light">
+        <item name="colorAccent">@color/StarYellow</item>
+    </style>
 </resources>

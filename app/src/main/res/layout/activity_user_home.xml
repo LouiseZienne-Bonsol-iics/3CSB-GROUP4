@@ -38,7 +38,32 @@
         app:headerLayout="@layout/nav_header"
         app:itemBackground="@drawable/drawer_item_bg"
         android:background="#F4F4F4"
-        app:menu="@menu/drawer_menu" />
+        app:menu="@menu/drawer_menu" >
+
+        <ImageButton
+            android:id="@+id/logoutButton"
+            android:background="@android:color/transparent"
+            android:onClick="logout"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:scaleType="fitCenter"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="230sp"
+            android:layout_marginBottom="20sp"
+            android:src="@drawable/button_logout" />
+
+        <TextView
+            android:id="@+id/txt_logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="155sp"
+            android:layout_marginBottom="22sp"
+            android:text="Logout"
+            android:textSize="20sp"/>
+
+
+    </com.google.android.material.navigation.NavigationView>
 
 
 

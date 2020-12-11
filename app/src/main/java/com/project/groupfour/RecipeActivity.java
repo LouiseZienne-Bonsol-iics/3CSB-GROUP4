@@ -33,6 +33,9 @@ public class RecipeActivity extends AppCompatActivity {
     private TextView recipeIngred;
     private TextView recipe;
 
+    Toolbar toolbar;
+    private TextView toolName;
+
     DatabaseReference ref;
 
     @Override
@@ -40,8 +43,9 @@ public class RecipeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe);
 
-        /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);*/
+        toolbar = (Toolbar) findViewById(R.id.recipe_toolbar);
+        setSupportActionBar(toolbar);
+        toolName = findViewById(R.id.recipe_toolbar_name);
 
         recipeImg = findViewById(R.id.recipe_image_view);
         recipeName = findViewById(R.id.txt_recipe_name);
@@ -65,12 +69,16 @@ public class RecipeActivity extends AppCompatActivity {
                     String ingred = dataSnapshot.child("ingredients").getValue().toString();
                     String recip = dataSnapshot.child("recipe").getValue().toString();
 
+                    String tb = rName;
+
                     Picasso.get().load(img).into(recipeImg);
                     recipeName.setText(rName);
                     recipeRating.setRating(Float.parseFloat(rate));
                     prepTime.setText(pTime);
                     recipeIngred.setText(ingred);
                     recipe.setText(recip);
+
+                    toolName.setText(tb);
                 }
 
             }
