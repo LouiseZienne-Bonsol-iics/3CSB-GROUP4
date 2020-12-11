@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,7 +14,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RatingBar;
@@ -29,9 +27,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 public class RecipeActivity extends AppCompatActivity {
     private ImageView recipeImg;
     private TextView recipeName;
@@ -39,17 +34,6 @@ public class RecipeActivity extends AppCompatActivity {
     private TextView  prepTime;
     private TextView recipeIngred;
     private TextView recipe;
-    private Button editRecipe;
-
-    String RecipeKey;
-    String img;
-    String rName;
-    String rate;
-    String pTime;
-    String ingred;
-    String recip;
-
-    ArrayList<String> recipeData = new ArrayList<>();
 
     Toolbar toolbar;
     private TextView toolName;
@@ -78,27 +62,21 @@ public class RecipeActivity extends AppCompatActivity {
         prepTime = findViewById(R.id.txt_prep_time);
         recipeIngred = findViewById(R.id.txt_ingredview);
         recipe = findViewById(R.id.txt_recipe_procedure);
-        editRecipe = findViewById(R.id.edit_button);
-        SharedPreferences sp = getSharedPreferences("prefs", MODE_PRIVATE);
-
-        if(sp.getString("role", "").equals("Admin")){
-            editRecipe.setVisibility(View.VISIBLE);
-        }
 
         ref = FirebaseDatabase.getInstance().getReference().child("Recipes");
 
-        RecipeKey = getIntent().getStringExtra("RecipeKey");
+        String RecipeKey = getIntent().getStringExtra("RecipeKey");
 
         ref.child(RecipeKey).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
-                    img = dataSnapshot.child("imageUrl").getValue().toString();
-                    rName = dataSnapshot.child("recipeName").getValue().toString();
-                    rate = dataSnapshot.child("recipeRating").getValue().toString();
-                    pTime = dataSnapshot.child("prepTime").getValue().toString();
-                    ingred = dataSnapshot.child("ingredients").getValue().toString();
-                    recip = dataSnapshot.child("recipe").getValue().toString();
+                    String img = dataSnapshot.child("imageUrl").getValue().toString();
+                    String rName = dataSnapshot.child("recipeName").getValue().toString();
+                    String rate = dataSnapshot.child("recipeRating").getValue().toString();
+                    String pTime = dataSnapshot.child("prepTime").getValue().toString();
+                    String ingred = dataSnapshot.child("ingredients").getValue().toString();
+                    String recip = dataSnapshot.child("recipe").getValue().toString();
 
                     String tb = rName;
 
@@ -129,20 +107,5 @@ public class RecipeActivity extends AppCompatActivity {
             finish(); // close this activity and return to preview activity (if there is any)
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    public void editRecipe(View v){
-        //Toast.makeText(this, "Hi!", Toast.LENGTH_SHORT).show();
-        recipeData.add(RecipeKey);
-        recipeData.add(img);
-        recipeData.add(rName);
-        recipeData.add(rate);
-        recipeData.add(pTime);
-        recipeData.add(ingred);
-        recipeData.add(recip);
-        Intent i = new Intent(this, AddRecipeActivity.class);
-        i.putExtra("FROM_ACTIVITY", "RecipeActivity");
-        i.putExtra("RECIPE_DATA", recipeData);
-        startActivity(i);
     }
 }
