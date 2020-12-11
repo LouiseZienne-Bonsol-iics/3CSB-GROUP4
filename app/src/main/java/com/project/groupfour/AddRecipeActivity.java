@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.MimeTypeMap;
@@ -23,6 +24,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -38,6 +40,7 @@ import com.project.groupfour.models.RecipeModel;
 
 public class AddRecipeActivity extends AppCompatActivity implements View.OnClickListener{
     private static final int PICK_IMAGE_REQUEST = 1;
+    Toolbar tb;
 
     private ImageView recipeImg;
     private String category;
@@ -75,6 +78,16 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_recipe);
+
+        //setup toolbar
+        tb = (Toolbar) findViewById(R.id.recipe_toolbar);
+        setSupportActionBar(tb);
+
+        //adding the back arrow in toolbar
+        if (getSupportActionBar() != null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
 
         recipeImg = findViewById(R.id.recipe_image_view);
         recipeRating = findViewById(R.id.recipe_rating_view);
@@ -136,36 +149,28 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
         switch (view.getId()){
             case R.id.coffee_button:
                 category = "Coffee";
-                //cat_sub = "coffee";
                 c1 = "coffee";
-
                 dialog.dismiss();
                 tempSubCatDialog();
                 Toast.makeText(AddRecipeActivity.this, "Coffee Button", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.iceblend_button:
                 category = "Ice Blended";
-                //cat_sub = "ice";
                 c1 = "ice";
-
                 dialog.dismiss();
                 baseSubCatDialog();
                 Toast.makeText(AddRecipeActivity.this, "Ice Blend Button", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.tea_button:
                 category = "Tea";
-                //cat_sub = "tea";
                 c1 = "tea";
-
                 dialog.dismiss();
                 tempSubCatDialog();
                 Toast.makeText(AddRecipeActivity.this, "Tea Button", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.frappe_button:
                 category = "Frappe";
-                //cat_sub = "frappe";
                 c1 = "frappe";
-
                 dialog.dismiss();
                 baseSubCatDialog();
                 Toast.makeText(AddRecipeActivity.this, "Frappe Button", Toast.LENGTH_SHORT).show();
@@ -186,23 +191,17 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
                 switch (which) {
                     case 0:
                         subCategory = "Fruit-Based";
-                        //cat_sub.concat("1");
                         c2 = "_one";
-
                         Toast.makeText(AddRecipeActivity.this, "Selected Fruit", Toast.LENGTH_LONG).show();
                         break;
                     case 1:
                         subCategory = "Coffee-Based";
-                        //cat_sub.concat("2");
                         c2 = "_two";
-
                         Toast.makeText(AddRecipeActivity.this, "Selected Coffee", Toast.LENGTH_LONG).show();
                         break;
                     case 2:
                         subCategory = "Milk-Based";
-                        //cat_sub.concat("3");
                         c2 = "_three";
-
                         Toast.makeText(AddRecipeActivity.this, "Selected Milk", Toast.LENGTH_LONG).show();
                         break;
                 }
@@ -240,14 +239,12 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
                 switch (which) {
                     case 0:
                         subCategory = "Hot";
-                        //cat_sub.concat("1");
                         c2 = "_one";
 
                         Toast.makeText(AddRecipeActivity.this, "Selected Hot", Toast.LENGTH_LONG).show();
                         break;
                     case 1:
                         subCategory = "Cold";
-                        //cat_sub.concat("2");
                         c2 = "_two";
 
                         Toast.makeText(AddRecipeActivity.this, "Selected Cold", Toast.LENGTH_LONG).show();
@@ -260,8 +257,6 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         uploadRecipe();
-                        //Toast.makeText(AddRecipeActivity.this, "Something has been selected", Toast.LENGTH_LONG).show();
-                        //dialog.cancel();
                     }
                 });
         subCatDialogBuilder.setNegativeButton("Cancel",
@@ -311,7 +306,6 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
                         String rname = recipeName.getText().toString().trim();
                         String cat = category;
                         String subcat = subCategory;
-                        //String catsub = cat_sub;
                         String catsub = c1.concat(c2);
                         String rating = String.valueOf(recipeRating.getRating());
                         String ptime = prepTime.getText().toString().trim();
@@ -362,6 +356,12 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
             recipeImg.setImageURI(imageUri);
         }
     }
-    
-    
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish(); // close this activity and return to preview activity (if there is any)
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

@@ -50,9 +50,7 @@ public class ResultFragment extends Fragment {
         mDatabase.keepSynced(true);
 
         rv = view.findViewById(R.id.result_view);
-
         //rv.setHasFixedSize(true);
-
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
         //initData();
         //setRecyclerView();
@@ -60,7 +58,7 @@ public class ResultFragment extends Fragment {
         return view;
     }
 
-    private void setRecyclerView() {
+    /*private void setRecyclerView() {
         ResultsAdapter ra = new ResultsAdapter(lrc);
         rv.setAdapter(ra);
         rv.setHasFixedSize(true);
@@ -72,7 +70,7 @@ public class ResultFragment extends Fragment {
         lrc.add(new ResultsConstructor("Coffee", R.drawable.temp_c1));
         lrc.add(new ResultsConstructor("Tea", R.drawable.temp_t1));
         lrc.add(new ResultsConstructor("Iced Drink", R.drawable.temp_j1));
-    }
+    }*/
 
     @Override
     public void onStart() {
@@ -101,6 +99,7 @@ public class ResultFragment extends Fragment {
             protected void populateViewHolder(RecipeViewHolder recipeViewHolder, RecipeModel recipeModel, final int i) {
                 recipeViewHolder.setRecipeName(recipeModel.getRecipeName());
                 recipeViewHolder.setImage(recipeModel.getImageUrl());
+
                 recipeViewHolder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -129,6 +128,5 @@ public class ResultFragment extends Fragment {
             ImageView recImage = (ImageView)mView.findViewById(R.id.results_pic);
             Picasso.get().load(image).into(recImage);
         }
-
     }
 }

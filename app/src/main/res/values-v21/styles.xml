@@ -8,9 +8,15 @@
         <item name="colorAccent">@color/Light</item>
         <item name="android:statusBarColor">@color/Dark</item>
         <item name="drawerArrowStyle">@style/DrawerIcon</item>
+
     </style>
 
     <style name="DrawerIcon" parent="Widget.AppCompat.DrawerArrowToggle">
         <item name="color">#A3FAE2</item>
+    </style>
+
+    <style name="ToolbarTheme" parent="@style/Theme.AppCompat.NoActionBar">
+        <!-- Customize color of navigation drawer icon and back arrow -->
+        <item name="colorControlNormal">@android:color/white</item>
     </style>
 </resources>

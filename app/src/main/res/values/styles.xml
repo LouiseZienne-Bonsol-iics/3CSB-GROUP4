@@ -20,4 +20,9 @@
     <style name="Theme.Rating" parent="Theme.AppCompat.Light">
         <item name="colorAccent">@color/StarYellow</item>
     </style>
+
+    <style name="ToolbarTheme" parent="@style/Theme.AppCompat.NoActionBar">
+        <!-- Customize color of navigation drawer icon and back arrow -->
+        <item name="colorControlNormal">@android:color/white</item>
+    </style>
 </resources>
