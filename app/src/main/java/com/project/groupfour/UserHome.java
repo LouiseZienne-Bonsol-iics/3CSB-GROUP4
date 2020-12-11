@@ -122,6 +122,7 @@ public class UserHome extends AppCompatActivity implements NavigationView.OnNavi
                 break;
             case R.id.nav_addrecipe:
                 Intent i = new Intent(this, AddRecipeActivity.class);
+                i.putExtra("FROM_ACTIVITY", "UserHome");
                 startActivity(i);
                 navigationView.setCheckedItem(R.id.nav_home);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
