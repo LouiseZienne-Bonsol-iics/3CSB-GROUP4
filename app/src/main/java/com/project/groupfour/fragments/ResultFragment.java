@@ -1,5 +1,6 @@
 package com.project.groupfour.fragments;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -39,6 +40,7 @@ public class ResultFragment extends Fragment {
 
     private RecyclerView rv;
     List<ResultsConstructor> lrc;
+    ProgressDialog pd;
 
     private DatabaseReference mDatabase;
 
@@ -48,6 +50,8 @@ public class ResultFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_result, container, false);
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Recipes");
         mDatabase.keepSynced(true);
+
+        pd = new ProgressDialog(getActivity());
 
         rv = view.findViewById(R.id.result_view);
         //rv.setHasFixedSize(true);
@@ -76,6 +80,9 @@ public class ResultFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
+        pd.setMessage("Searching, please wait.");
+        pd.show();
+
         Bundle bundle = this.getArguments();
         String recipeNameSearch = bundle.getString("recipeName");
         String cat_sub = bundle.getString("subcats");
@@ -99,6 +106,8 @@ public class ResultFragment extends Fragment {
             protected void populateViewHolder(RecipeViewHolder recipeViewHolder, RecipeModel recipeModel, final int i) {
                 recipeViewHolder.setRecipeName(recipeModel.getRecipeName());
                 recipeViewHolder.setImage(recipeModel.getImageUrl());
+
+                pd.dismiss();
 
                 recipeViewHolder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
