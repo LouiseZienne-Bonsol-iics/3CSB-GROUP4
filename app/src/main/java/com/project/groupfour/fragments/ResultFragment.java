@@ -113,7 +113,7 @@ public class ResultFragment extends Fragment {
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 if(dataSnapshot!=null && dataSnapshot.getChildren()!=null &&
                                         dataSnapshot.getChildren().iterator().hasNext()){
-                                    Toast.makeText(getActivity(), "ALREADY IN RECENT SEARCHES", Toast.LENGTH_SHORT).show();
+                                    //Toast.makeText(getActivity(), "ALREADY IN RECENT SEARCHES", Toast.LENGTH_SHORT).show();
                                 } else{
                                     String timestamp2 = System.currentTimeMillis() + "";
                                     String rID = getRef(i).getKey();

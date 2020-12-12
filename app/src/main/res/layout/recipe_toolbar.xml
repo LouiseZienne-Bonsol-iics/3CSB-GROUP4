@@ -20,10 +20,13 @@
 
     <ImageButton
         android:id="@+id/btn_favorite"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_gravity="right"
         android:onClick="addToFavorites"
+        android:scaleType="centerCrop"
+        android:background="@android:color/transparent"
+        android:layout_marginRight="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.044"
