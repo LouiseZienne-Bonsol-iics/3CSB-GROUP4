@@ -22,6 +22,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,6 +31,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class RecipeActivity extends AppCompatActivity {
     private ImageView recipeImg;
@@ -52,6 +54,12 @@ public class RecipeActivity extends AppCompatActivity {
 
     Toolbar toolbar;
     private TextView toolName;
+    String favItem;
+    boolean checkFav;
+
+    DatabaseReference RecipeRef;
+    DatabaseReference UserRef;
+    FirebaseAuth mAuth;
 
     DatabaseReference ref;
 
@@ -84,11 +92,13 @@ public class RecipeActivity extends AppCompatActivity {
             editRecipe.setVisibility(View.VISIBLE);
         }
 
-        ref = FirebaseDatabase.getInstance().getReference().child("Recipes");
+        RecipeRef = FirebaseDatabase.getInstance().getReference().child("Recipes");
+        UserRef = FirebaseDatabase.getInstance().getReference().child("Users");
+        mAuth = FirebaseAuth.getInstance();
 
         RecipeKey = getIntent().getStringExtra("RecipeKey");
 
-        ref.child(RecipeKey).addValueEventListener(new ValueEventListener() {
+        RecipeRef.child(RecipeKey).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
@@ -100,6 +110,7 @@ public class RecipeActivity extends AppCompatActivity {
                     recip = dataSnapshot.child("recipe").getValue().toString();
 
                     String tb = rName;
+                    favItem = rName;
 
                     Picasso.get().load(img).into(recipeImg);
                     recipeName.setText(rName);
@@ -120,11 +131,37 @@ public class RecipeActivity extends AppCompatActivity {
         });
     }
 
+    public void addToFavorites(View v) {
+        UserRef.child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String UserKey = getIntent().getStringExtra("RecipeKey");
+                checkFav = dataSnapshot.child("Favorites").hasChild(UserKey);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        String UserKey = getIntent().getStringExtra("RecipeKey");
+        HashMap<String, Object> map = new HashMap<>();
+        //map.put(favItem, UserKey);
+        map.put("recipeID", UserKey);
+        map.put("recipeName", favItem);
+        map.put("imageUrl", img);
+        if(!checkFav){
+            Toast.makeText(this, "Added to favorites", Toast.LENGTH_SHORT).show();
+            UserRef.child(mAuth.getCurrentUser().getUid()).child("Favorites").child(UserKey).updateChildren(map);
+        }else{
+            Toast.makeText(this, "Removed from favorites", Toast.LENGTH_SHORT).show();
+            UserRef.child(mAuth.getCurrentUser().getUid()).child("Favorites").child(UserKey).removeValue();
+        }
+    }
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            /*Intent i = new Intent(RecipeActivity.this,UserHome.class);
-            startActivity(i);*/
             finish(); // close this activity and return to preview activity (if there is any)
         }
         return super.onOptionsItemSelected(item);
