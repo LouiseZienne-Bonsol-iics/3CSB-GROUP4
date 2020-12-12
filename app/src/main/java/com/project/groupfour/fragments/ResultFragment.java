@@ -64,27 +64,10 @@ public class ResultFragment extends Fragment {
         pd = new ProgressDialog(getActivity());
 
         rv = view.findViewById(R.id.result_view);
-        //rv.setHasFixedSize(true);
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
-        //initData();
-        //setRecyclerView();
 
         return view;
     }
-
-    /*private void setRecyclerView() {
-        ResultsAdapter ra = new ResultsAdapter(lrc);
-        rv.setAdapter(ra);
-        rv.setHasFixedSize(true);
-    }
-
-    private void initData() {
-        lrc = new ArrayList<>();
-
-        lrc.add(new ResultsConstructor("Coffee", R.drawable.temp_c1));
-        lrc.add(new ResultsConstructor("Tea", R.drawable.temp_t1));
-        lrc.add(new ResultsConstructor("Iced Drink", R.drawable.temp_j1));
-    }*/
 
     @Override
     public void onStart() {
@@ -108,8 +91,7 @@ public class ResultFragment extends Fragment {
             firebaseSearchQuery = mDatabase;
         }
 
-        //Query firebaseSearchQuery = mDatabase.orderByChild("cat_sub").equalTo(cat_sub);
-
+        pd.dismiss();
         FirebaseRecyclerAdapter<RecipeModel,RecipeViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<RecipeModel, RecipeViewHolder>
                 (RecipeModel.class, R.layout.result_row, RecipeViewHolder.class, firebaseSearchQuery) {
             @Override
@@ -117,38 +99,21 @@ public class ResultFragment extends Fragment {
                 recipeViewHolder.setRecipeName(recipeModel.getRecipeName());
                 recipeViewHolder.setImage(recipeModel.getImageUrl());
 
-                pd.dismiss();
-
                 recipeViewHolder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Intent intent = new Intent(getActivity(), RecipeActivity.class);
                         intent.putExtra("RecipeKey", getRef(i).getKey());
-                        
-                        //push to db
-                        /*String timestamp = System.currentTimeMillis() + "";*/
+
                         String rID = getRef(i).getKey();
-                        /*HashMap<String, Object> map = new HashMap<>();
-                        map.put("recipeID", rID);
-                        map.put("recipeName",recipeModel.getRecipeName());
-                        map.put("timestamp", timestamp);*/
 
-                        //UserRef.child(mAuth.getCurrentUser().getUid()).child("RecentSearches").push().setValue(map);
-
+                        //adding to recent searches
                         UserRef.child(mAuth.getCurrentUser().getUid()).child("RecentSearches").orderByChild("recipeID").equalTo(rID).addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                //String searchid;
-
                                 if(dataSnapshot!=null && dataSnapshot.getChildren()!=null &&
                                         dataSnapshot.getChildren().iterator().hasNext()){
-                                    /*String time = System.currentTimeMillis() + "";
-                                    HashMap timemap = new HashMap();
-                                    timemap.put("timestamp", time);
-
-                                    UserRef.child(mAuth.getCurrentUser().getUid()).child("RecentSearches").child(getKey()).updateChildren(timemap);*/
-                                    Toast.makeText(getActivity(), "WENT INSIDE CHECK", Toast.LENGTH_SHORT).show();
-                                    //UserRef.child("RecentSearches").child(dataSnapshot.getKey()).removeValue();
+                                    Toast.makeText(getActivity(), "ALREADY IN RECENT SEARCHES", Toast.LENGTH_SHORT).show();
                                 } else{
                                     String timestamp2 = System.currentTimeMillis() + "";
                                     String rID = getRef(i).getKey();
@@ -157,7 +122,6 @@ public class ResultFragment extends Fragment {
                                     map.put("recipeName",recipeModel.getRecipeName());
                                     map.put("timestamp", timestamp2);
 
-                                    //searchid = UserRef.child(mAuth.getCurrentUser().getUid()).child("RecentSearches").push().getKey();
                                     UserRef.child(mAuth.getCurrentUser().getUid()).child("RecentSearches").push().setValue(map);
                                 }
                             }
@@ -181,7 +145,7 @@ public class ResultFragment extends Fragment {
 
         public RecipeViewHolder(View itemView){
             super(itemView);
-            mView = itemView;
+                mView = itemView;
         }
         public void setRecipeName(String name){
             TextView recName = (TextView) mView.findViewById(R.id.results_name);
